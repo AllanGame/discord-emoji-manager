@@ -6,40 +6,6 @@ module.exports = (client, message) =>  {
     let misc = require('../utils/misc.json')
     let args = message.content.split(" ");
 
-    // FILTER
-
-    if (message.webhookID) return;
-
-var filterwords = [
-  "fuck",
-  "bitch",
-  "fucking",
-  ];
-
-let user = message.author;
-
-if (filterwords.some((word) => message.content.toLowerCase().includes(word))) {
-  message.delete();
-
-  message.channel.createWebhook(`${user.username}`, {
-      avatar: `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`,})
-    .then((hook) => {
-
-      let { Webhook } = require("discord-webhook-node");
-      let whook = new Webhook(`${hook.url}`);
-
-      let sendhook = args.join(" ");
-
-      filterwords.forEach((word) => {
-        sendhook = sendhook.replace(word, word.split("").map((char) => "×").join("")).toLowerCase()
-      });
-
-      hook.send(sendhook).then((deletehook) => {
-        hook.delete("auto");
-      });
-    });
-}
-
     UserSchema.findOne({
         userID: message.author.id
     }, (err, user) => {
@@ -178,7 +144,7 @@ if (filterwords.some((word) => message.content.toLowerCase().includes(word))) {
                 } catch(err) {
                     message.channel.send(errorEmbed);
                     console.error(err);
-                    client.channels.resolve("718335605880258610").send(`error \`${cmd.name}\`. for more information check console.\n` + "```js\n" + err + "```");
+                    client.channels.resolve("795363096893718568").send(`error \`${cmd.name}\`. for more information check console.\n` + "```js\n" + err + "```");
                 }
             }
         });
