@@ -74,7 +74,7 @@ module.exports = {
                 if (txt.length > limit) {
 
                     message.channel.send(embed(evalcode(code), evalcode(txt.slice(0, limit)), evalType, "GREEN", "Evaluation", true, false));
-                    storage.Log.log(txt);
+                    console.log(txt);
 
                 } else {
 
