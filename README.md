@@ -3,7 +3,7 @@
 
 
 ## Information
-Emoji Manager is a [Discord](https://discord.com) bot for manage your server emojis with awesome features like add emojis from another servers, <br>
+Emoji Manager is a [Discord](https://discord.com) bot for manage your server emojis with awesome features like add emojis from another servers,
 vip emojis, analytics and more
 
 ## Features
