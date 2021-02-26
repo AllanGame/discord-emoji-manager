@@ -42,5 +42,5 @@ use the !help command for a better explanation with examples <br>
 ![Adding multiple emojis](https://media.discordapp.net/attachments/795363096893718568/814653119395790908/unknown.png?width=507&height=369)
 <br>*Adding multiple emojis*
 
-[Emojis only for certain role](https://cdn.discordapp.com/attachments/795363096893718568/814665729936719872/emojis.gif)
-*Emojis only for certain role*
+![Emojis only for certain role](https://cdn.discordapp.com/attachments/795363096893718568/814665729936719872/emojis.gif)
+<br>*Emojis only for certain role*
