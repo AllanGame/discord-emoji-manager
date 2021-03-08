@@ -50,7 +50,6 @@ mongoose.connect(uri, {
     if(err) {
         console.error(`[ERROR] Error .\n${err}`);
         process.exit(1);
-        return;
     }
     console.log(`[INFO] Connected to ${data.database.url} (MongoDB)`);
 });
