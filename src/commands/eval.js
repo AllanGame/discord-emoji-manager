@@ -8,18 +8,18 @@ module.exports = {
     perms: [],
     run: (client, message, args, storage) => {
         const Discord = require("discord.js");
-        const code = args.join(" ");
+        let code = args.join(" ");
 
-        if(!args[0]) {message.channel.send(`What will you evaluate, ${message.member}?`);
+        if (!args[0]) {
+            message.channel.send(`What will you evaluate, ${message.member}?`);
         } else {
-
             let limit = 980;
 
-            function evalcode(output){
+            function evalcode(output) {
                 return `\`\`\`js\n${output}\n\`\`\``;
             }
 
-            function embed(input, output, type, color, footer, large, error){
+            function embed(input, output, type, color, footer, large, error) {
                 const e = new Discord.MessageEmbed()
                     .setAuthor(`Evaluated by ${message.author.username}`, `${message.author.displayAvatarURL({ format: "png", dynamic: true, size: 2048 })}`)
                     .setFooter(`${footer}`, `${client.user.displayAvatarURL({ format: "png", dynamic: true, size: 2048 })}`)
@@ -27,7 +27,7 @@ module.exports = {
 
                 let embed;
 
-                if(error){
+                if (error) {
 
                     return embed = e
                         .addField("Type", `\`\`\`prolog\n${type}\n\`\`\``, true)
@@ -38,7 +38,7 @@ module.exports = {
 
                 } else {
 
-                    if(large){
+                    if (large) {
 
                         return embed = e.setDescription("Check the console for view the complete evaluation.")
                             .addField("Type", `\`\`\`prolog\n${type}\n\`\`\``, true)
@@ -57,22 +57,20 @@ module.exports = {
                     }
 
                 }
-
-                return e;
-
             }
 
             try {
 
                 let evalued = eval(code);
-                let evaltype = typeof(evalued);
+                let evaltype = typeof (evalued);
                 let evalTypeSplitted = evaltype.split("");
-                let evalType = evalTypeSplitted[0].toUpperCase()+evalTypeSplitted.slice(1).join("");
-                if(typeof(evalued) !== "string" ? evalued = require("util").inspect(evalued, { depth: 0 }) : evalued);
-                const txt = "" + evalued;
-
+                let evalType = evalTypeSplitted[0].toUpperCase() + evalTypeSplitted.slice(1).join("");
+                if (typeof (evalued) !== "string" ? evalued = require("util").inspect(evalued, {
+                        depth: 0
+                    }) : evalued);
+                let txt = "" + evalued;
+                if (code.includes("client.token")) txt = "nope";
                 if (txt.length > limit) {
-
                     message.channel.send(embed(evalcode(code), evalcode(txt.slice(0, limit)), evalType, "GREEN", "Evaluation", true, false));
                     console.log(txt);
 
@@ -82,7 +80,7 @@ module.exports = {
 
                 }
 
-            }  catch (err) {
+            } catch (err) {
 
                 const errType = err.toString().split(":")[0];
 
