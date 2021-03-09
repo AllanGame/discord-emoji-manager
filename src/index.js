@@ -7,6 +7,10 @@ let fs = require("fs");
 client.commands = new Discord.Collection();
 client.cooldowns = new Discord.Collection();
 
+global.b = function b(text) {
+    return new Discord.MessageEmbed().setDescription(text).setColor('RANDOM');
+}
+
 fs.readdir(__dirname + "/commands", (err, files) => {
     if(err) {
         console.error(err);

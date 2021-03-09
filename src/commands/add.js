@@ -1,3 +1,4 @@
+const Discord = require("discord.js");
 module.exports = {
     name: "add",
     usage: "add <name> <url || attachment>",
@@ -7,7 +8,7 @@ module.exports = {
     cooldown: 3,
     perms: ["MANAGE_EMOJIS"],
     run: (client, message, args, storage) => {
-        const Discord = require("discord.js");
+        
 
         /**
          * TODO: Add multiple emojis support [arg 1 must be "these"] - .zip files support
@@ -30,18 +31,18 @@ module.exports = {
             let emojis = args.slice(1)
             let msg = []
             if(!args[1]) {
-                return message.channel.send('Please provide emojis to add!')
+                return message.channel.send(b('Please provide emojis to add!'))
             }
 
             for(i=0; i<emojis.length; i++) {
                 let emoji = Discord.Util.parseEmoji(emojis[i]);
                 if(emoji.id === undefined || emoji.id === null) {
-                    message.channel.send("`" + emojis[i] + "` Isn't a valid emoji!")
+                    message.channel.send(b("`" + emojis[i] + "` Isn't a valid emoji!"));
                     break;
                 }
                 let emojiURL; 
-                let emojiExtention = ""
-                emoji.animated ? emojiExtention = ".gif" : emojiExtention = ".png"
+                let emojiExtention = "";
+                emoji.animated ? emojiExtention = ".gif" : emojiExtention = ".png";
                 emojiURL = "https://cdn.discordapp.com/emojis/"+emoji.id+emojiExtention+"?v=1";
                 message.guild.emojis.create(emojiURL, emoji.name)
                 .then(emoji => message.channel.send("Added: "+ emoji.toString()))
@@ -60,11 +61,11 @@ module.exports = {
              let emojiURL; 
              let emojiExtention = "";
              if(!args[0]) {
-                 return message.channel.send('Please provide an emoji!');
+                 return message.channel.send(b('Please provide an emoji!'));
              }
              let emoji = Discord.Util.parseEmoji(args[0]);
              if(emoji.id === undefined || emoji.id === null) {
-                 return message.channel.send("Invalid emoji! \n" + "emoji id: "+ emoji.id);
+                 return message.channel.send(b("Invalid emoji! \n" + "emoji id: "+ emoji.id));
              }
              if(args[1] && message.embeds.length <= 0) {
                  emojiName = args[1];
@@ -79,7 +80,7 @@ module.exports = {
             .then(emoji => message.channel.send("Added: "+ emoji.toString()))
             .catch(error => {
                 if(error.code === 30008) {
-                    message.channel.send(error.message)
+                    message.channel.send(b(error.message))
                 }
             });   
             return;
