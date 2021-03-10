@@ -37,10 +37,10 @@ module.exports = {
         });
 
         embed.setDescription(`
-        > **ID**: \`${e.id}\`
-        > **Animated**: \`${e.animated ? 'Yes' : 'No'}\`
-        > **Guild**: \`${e.guild.name}\`
-        > **Roles**: ${roles.length < 1 ? 'None' : roles.join(", ")}
+        **ID**: \`${e.id}\`
+        **<:gif:818988133269372960> Animated**: \`${e.animated ? 'Yes' : 'No'}\`
+        **Guild**: \`${e.guild.name}\`
+        **<:role:818987653118689360> Roles that can use this emoji**: ${roles.length < 1 ? '@everyone' : roles.join(", ")}
         `)
             .setThumbnail(e.url);
         message.channel.send(embed);

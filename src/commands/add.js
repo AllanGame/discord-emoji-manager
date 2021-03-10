@@ -5,7 +5,7 @@ module.exports = {
     alias: ["agregar"],
     onlyowner: false,
     onlydev: false,
-    cooldown: 3,
+    cooldown: 10,
     perms: ["MANAGE_EMOJIS"],
     run: (client, message, args, storage) => {
         
@@ -45,7 +45,7 @@ module.exports = {
                 emoji.animated ? emojiExtention = ".gif" : emojiExtention = ".png";
                 emojiURL = "https://cdn.discordapp.com/emojis/"+emoji.id+emojiExtention+"?v=1";
                 message.guild.emojis.create(emojiURL, emoji.name)
-                .then(emoji => message.channel.send("Added: "+ emoji.toString()))
+                .then(emoji => message.channel.send("<:succesfully:818987738678034463> Added: "+ emoji.toString()))
                 .catch(error => {
                     if(error.code === 30008) {
                         message.channel.send(error.message)
@@ -60,20 +60,32 @@ module.exports = {
              let emojiName;
              let emojiURL; 
              let emojiExtention = "";
+             let emojiIsAttachment = false;
              if(!args[0]) {
                  return message.channel.send(b('Please provide an emoji!'));
              }
              let emoji = Discord.Util.parseEmoji(args[0]);
              if(emoji.id === undefined || emoji.id === null) {
-                 return message.channel.send(b("Invalid emoji!"));
+                 if(message.attachments.size > 0) {
+                     emojiURL = message.attachments.values().next().value.url;
+                     emojiIsAttachment = true;
+                 } else {
+                    message.channel.send(b("Invalid emoji!"));
+                 }
              }
 
-            emoji.animated ? emojiExtention = ".gif" : emojiExtention = ".png";
-            emojiURL = "https://cdn.discordapp.com/emojis/"+emoji.id+emojiExtention+"?v=1";
+             if(emojiIsAttachment) {
+                emojiName = args[0];
+                emojiIsAttachment = false;
+             } else {
+                emoji.animated ? emojiExtention = ".gif" : emojiExtention = ".png";
+                emojiURL = "https://cdn.discordapp.com/emojis/"+emoji.id+emojiExtention+"?v=1";
+             }
 
             message.guild.emojis.create(emojiURL, emojiName)
-            .then(emoji => message.channel.send("Added: "+ emoji.toString()))
+            .then(emoji => message.channel.send("<:succesfully:818987738678034463> Added: "+ emoji.toString()))
             .catch(error => {
+                console.log(error)
                 if(error.code === 30008) {
                     message.channel.send(b(error.message))
                 }
@@ -87,8 +99,9 @@ module.exports = {
              let emojiURL = message.embeds[0].url;
              let emojiName = args[0];
              message.guild.emojis.create(emojiURL, emojiName)
-                 .then(emoji => message.channel.send(b(":heavy_plus_sign: Added: "+ emoji.toString())))
+                 .then(emoji => message.channel.send(b("<:succesfully:818987738678034463> Added: "+ emoji.toString())))
                  .catch(error => {
+                     console.log(error)
                      if(error.code === 30008) {
                          message.channel.send(b(":x: " +error.message))
                      }

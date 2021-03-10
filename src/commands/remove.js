@@ -30,7 +30,7 @@ module.exports = {
         if(emojiID !== undefined) {
             emojiTarget = emojiID;
             emojiTarget.delete(reason).then(r => {
-                message.channel.send(b(`The emoji was succesfully deleted with the reason \`${reason}\``))
+                message.channel.send(b(`The emoji ":${r.name}:" was succesfully deleted with the reason \`${reason}\``).setFooter(`Emoji ID: ${r.id}`))
             })
             return;
         }
@@ -39,7 +39,7 @@ module.exports = {
         if(emojiName !== undefined) {
             emojiTarget = emojiName;
             emojiTarget.delete(reason).then(r => {
-                message.channel.send(b(`The emoji was succesfully deleted with the reason \`${reason}\``))
+                message.channel.send(b(`The emoji ":${r.name}:" was succesfully deleted with the reason \`${reason}\``).setFooter(`Emoji ID: ${r.id}`))
             })
             return;
         }
@@ -53,7 +53,7 @@ module.exports = {
             emojiTarget = message.guild.emojis.cache.get(parseEmoji.id);
             
             emojiTarget.delete(reason).then(r => {
-                message.channel.send(b(`The emoji was succesfully deleted with the reason \`${reason}\``))
+                message.channel.send(b(`The emoji ":${r.name}:" was succesfully deleted with the reason \`${reason}\``).setFooter(`Emoji ID: ${r.id}`))
             })
             
             
