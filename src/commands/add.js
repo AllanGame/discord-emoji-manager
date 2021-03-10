@@ -56,7 +56,7 @@ module.exports = {
             return;
         }
          // !add :emoji:
-         if(!args[2]) {
+         if(!args[1]) {
              let emojiName;
              let emojiURL; 
              let emojiExtention = "";
@@ -65,12 +65,7 @@ module.exports = {
              }
              let emoji = Discord.Util.parseEmoji(args[0]);
              if(emoji.id === undefined || emoji.id === null) {
-                 return message.channel.send(b("Invalid emoji! \n" + "emoji id: "+ emoji.id));
-             }
-             if(args[1] && message.embeds.length <= 0) {
-                 emojiName = args[1];
-             } else {
-                 emojiName = emoji.name;
+                 return message.channel.send(b("Invalid emoji!"));
              }
 
             emoji.animated ? emojiExtention = ".gif" : emojiExtention = ".png";
@@ -86,6 +81,22 @@ module.exports = {
             return;
           } 
 
+
+         if(message.embeds[0] !== undefined) {
+
+             let emojiURL = message.embeds[0].url;
+             let emojiName = args[0];
+             message.guild.emojis.create(emojiURL, emojiName)
+                 .then(emoji => message.channel.send(b(":heavy_plus_sign: Added: "+ emoji.toString())))
+                 .catch(error => {
+                     if(error.code === 30008) {
+                         message.channel.send(b(":x: " +error.message))
+                     }
+                     if(error.code === 50035) {
+                         message.channel.send(b(":x: "+ error.message))
+                     }
+                 });
+         }
         //  if(!args[0]) return;
 
         // let emojiName = args[0];
