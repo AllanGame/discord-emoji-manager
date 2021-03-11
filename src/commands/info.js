@@ -16,8 +16,6 @@ module.exports = {
      */
     run: (client, message, args, storage) => {
         const has = /<a?:.+:\d+>/gm;
-        const anim = /<a:.+:(\d+)>/gm;
-
         if (!args[0]) return message.reply(b("<:error:819654964628160527> Put the emoji or emoji id to get the data"));
         let emoji = args[0];
         const ranges = [
@@ -46,7 +44,7 @@ module.exports = {
         });
 
         embed.setDescription(`
-        🆔 **ID**: \`${e.id}\`
+        > 🆔 **ID**: \`${e.id}\`
         <:gif:818988133269372960> **Animated**: \`${e.animated ? 'Yes' : 'No'}\`
         <:discord_logo:818990574979514388> **Guild**: \`${e.guild.name}\`
         <:role:818987653118689360> **Roles that can use this emoji**: ${roles.length < 1 ? '@everyone' : roles.join(", ")}
