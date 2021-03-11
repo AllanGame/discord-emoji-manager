@@ -17,8 +17,8 @@ module.exports = {
         // Adding multiple emojis
         // !add these <emoji list>
         if(args[0] === "these") {
-            let emojis = args.slice(1)
-            let msg = []
+            let emojis = args.slice(1);
+            let msg = [];
             if(!args[1]) {
                 return message.channel.send(b('Please provide emojis to add!'))
             }
