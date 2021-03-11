@@ -1,3 +1,4 @@
+const Discord = require("discord.js");
 module.exports = {
     name: "eval",
     usage: "eval <code>",
@@ -6,8 +7,14 @@ module.exports = {
     onlyowner: false,
     onlydev: true,
     perms: [],
+    /**
+     * @param {Discord.Client} client
+     * @param {Discord.Message} message
+     * @param {String[]} args
+     * @param {any} storage
+     */
     run: (client, message, args, storage) => {
-        const Discord = require("discord.js");
+        
         let code = args.join(" ");
 
         if (!args[0]) {

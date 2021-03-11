@@ -7,9 +7,15 @@ module.exports = {
     onlydev: false,
     cooldown: 10,
     perms: ["MANAGE_EMOJIS"],
+    /**
+     * @param {Discord.Client} client
+     * @param {Discord.Message} message
+     * @param {String[]} args
+     * @param {any} storage
+     */
     run: (client, message, args, storage) => {
         
-
+        
         /**
          * TODO: .zip files support
          */
@@ -72,7 +78,7 @@ module.exports = {
                 emojiURL = "https://cdn.discordapp.com/emojis/"+emoji.id+emojiExtention+"?v=1";
                 emojiName = emoji.name;
              }
-
+            emojiName == null ? emojiName = args[0].replace('<', '').replace('>', '').split(":")[1] : emojiName;
             message.guild.emojis.create(emojiURL, emojiName)
             .then(emoji => message.channel.send("<:emojiAdded:819655097017172009> Added: "+ emoji.toString()))
             .catch(error => {
