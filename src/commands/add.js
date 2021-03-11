@@ -7,6 +7,12 @@ module.exports = {
     onlydev: false,
     cooldown: 10,
     perms: ["MANAGE_EMOJIS"],
+    /**
+     * @param {Discord.Client} client
+     * @param {Discord.Message} message
+     * @param {String[]} args
+     * @param {any} storage
+     */
     run: (client, message, args, storage) => {
         
         

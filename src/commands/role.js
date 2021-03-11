@@ -1,3 +1,4 @@
+const Discord = require("discord.js");
 module.exports = {
   name: "role",
   usage: "role <role> <emojis>",
@@ -6,13 +7,19 @@ module.exports = {
   onlydev: false,
   cooldown: 3,
   perms: ["MANAGE_EMOJIS"],
+  /**
+   * @param {Discord.Client} client
+   * @param {Discord.Message} message
+   * @param {String[]} args
+   * @param {any} storage
+   */
   run: (client, message, args, storage) => {
 
     /**
      * TODO: remove roles 
      */
 
-    const Discord = require("discord.js");
+
 
     // !role add <role> <emojis>
     if (args[0] === "add") {
@@ -21,7 +28,7 @@ module.exports = {
 
       for (i = 0; i < emojis.length; i++) {
         let emojiTarget = Discord.Util.parseEmoji(emojis[i]);
-        
+
         if (emojiTarget.id) {
           if (client.emojis.cache.find((emoji) => emoji.id === emojiTarget.id) === undefined) {
             return message.channel.send(b("that emoji isnt from this guild!"));
@@ -32,12 +39,12 @@ module.exports = {
         // so that everyone can use the emojis, discord needs an empty array
         // message.guild.emojis.cache.get(role).roles.set([]) => empty array
         if (args[1] === "everyone" ? (roleTarget = []) : (roleTarget = [roleTarget])) {
-            message.guild.emojis.cache
+          message.guild.emojis.cache
             .get(emojiTarget.id)
             .roles.set(roleTarget)
             .then((r) => {
               if (args[1] === "everyone") {
-                  message.channel.send(b(`Perfect! now all users can use the next emojis: ${emojis}`));
+                message.channel.send(b(`Perfect! now all users can use the next emojis: ${emojis}`));
               } else {
                 message.channel.send(b(`Perfect! now only users with ${roleTarget} can use the next emojis: ${emojis}`));
               }

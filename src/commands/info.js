@@ -8,7 +8,6 @@ module.exports = {
     cooldown: 2,
     perms: [],
     /**
-     *
      * @param {Discord.Client} client
      * @param {Discord.Message} message
      * @param {String[]} args
@@ -23,15 +22,17 @@ module.exports = {
             '\ud83d[\udc00-\ude4f]', // U+1F400 to U+1F64F
             '\ud83d[\ude80-\udeff]', // U+1F680 to U+1F6FF
             ' ',
-          ].join('|');
-          const sc = s => s.replace(new RegExp(ranges, 'g'), '');
-          if(!sc(emoji).length)return message.channel.send(b("<:error:819654964628160527> The emoji you just inserted is a unicode emoji, currently I don't support these emojis, but soon I will!"));
+        ].join('|');
+        const sc = s => s.replace(new RegExp(ranges, 'g'), '');
+        if (!sc(emoji).length) return message.channel.send(b("<:error:819654964628160527> The emoji you just inserted is a unicode emoji, currently I don't support these emojis, but soon I will!"));
         if (!has.test(emoji) && !client.emojis.cache.has(emoji)) return message.channel.send(b("<:error:819654964628160527> Invalid emoji."));
 
         const embed = new Discord.MessageEmbed()
             .setColor(message.member.displayHexColor === "#000000" ? 'RANDOM' : message.member.displayHexColor)
             .setTimestamp(Date.now())
-            .setFooter(message.author.username, message.author.displayAvatarURL({dynamic: true}));
+            .setFooter(message.author.username, message.author.displayAvatarURL({
+                dynamic: true
+            }));
 
         let id = emoji.includes("<") ? emoji.replace("<", "").replace(">", "").split(":")[2] : emoji;
         if (!client.emojis.cache.has(id)) return message.channel.send(b("<:error:819654964628160527> This emoji does not exists"));
