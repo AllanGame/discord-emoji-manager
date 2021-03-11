@@ -70,6 +70,7 @@ module.exports = {
              } else {
                 emoji.animated ? emojiExtention = ".gif" : emojiExtention = ".png";
                 emojiURL = "https://cdn.discordapp.com/emojis/"+emoji.id+emojiExtention+"?v=1";
+                emojiName = emoji.name;
              }
 
             message.guild.emojis.create(emojiURL, emojiName)
