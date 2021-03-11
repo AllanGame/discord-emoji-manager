@@ -5,7 +5,7 @@ module.exports = {
     alias: ["editar"],
     onlyowner: false,
     onlydev: false,
-    cooldown: 10,
+    cooldown: 5,
     perms: ["MANAGE_EMOJIS"],
     run: (client, message, args, storage) => { 
 
@@ -14,10 +14,10 @@ module.exports = {
         let newName = args[1];
 
         if(!emojiTarget) {
-            return message.channel.send(b('Provide an emoji to edit.'));
+            return message.channel.send(b('<:error:819654964628160527> Provide an emoji to edit.'));
         }
         if(!newName) {
-            return message.channel.send(b('Provide a new name for this emoji.'));
+            return message.channel.send(b('<:error:819654964628160527> Provide a new name for this emoji.'));
         }
         
         if(emojiTarget.id === undefined || emojiTarget.id === null) {
@@ -25,15 +25,30 @@ module.exports = {
               message.guild.emojis.cache.find(e => e.name === args[0]) !== undefined) {
                 emojiTarget = message.guild.emojis.cache.find(e => e.name === args[0]);
               } else {
-                  return message.channel.send(b('Invalid emoji!'));
+                  return message.channel.send(b('<:error:819654964628160527> Invalid emoji!'));
               }
         } else {
             emojiTarget = message.guild.emojis.cache.find(e => e.id === emojiTarget.id);
         }
 
-        emojiTarget.edit({ name: newName }).then(
-            message.channel.send(b(`Emoji ${emojiTarget} has been updated \n New name: ${newName}`))
-            )
+        let previousName = emojiTarget.name;
+
+        if(!/^[a-zA-Z0-9]*$/.test(newName)){
+            return message.channel.send(b("<:error:819654964628160527> Invalid name!"))
+        }
+
+        emojiTarget.edit({ name: newName }).then(e => {
+            message.channel.send(new Discord.MessageEmbed() 
+            .setTitle(`<:emojiUpdated:819655186325831682> Emoji Updated`)
+            .setDescription(
+                `**Emoji**: ${e}` +
+                `\n\n` +
+                `**Changes**:` +
+                "\nPrevious name: `" + previousName + "`" +
+                "\n New name: `" + e.name + "`"
+                )
+            .setColor(`RANDOM`))
+            })
 
     }
 }
