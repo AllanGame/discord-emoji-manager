@@ -116,7 +116,8 @@ module.exports = (client, message) =>  {
                 errorEmbed: errorEmbed,
                 GuildSchema: GuildSchema,
                 UserSchema: UserSchema,
-                Discord: Discord
+                Discord: Discord,
+                owners: require('../utils/misc.json').owners
             };
 
             const cmdCooldown = Math.floor(cmd.cooldown * 1000);
@@ -144,7 +145,7 @@ module.exports = (client, message) =>  {
                 } catch(err) {
                     message.channel.send(errorEmbed);
                     console.error(err);
-                    client.channels.resolve("795363096893718568").send(`error \`${cmd.name}\`. for more information check console.\n` + "```js\n" + err + "```");
+                    client.channels.resolve("820045148254765116").send(`error \`${cmd.name}\`. for more information check console.\n` + "```js\n" + err + "```");
                 }
             }
         });

@@ -26,9 +26,7 @@ module.exports = {
         let reason = args[1];
         let emojiTarget;
 
-        if (!reason) {
-            reason = "removed by " + message.author.tag + " without reason"
-        }
+        if (!reason) reason = "removed by " + message.author.tag + " without reason"
 
         let emojiID = message.guild.emojis.cache.get(args[0]);
         if (emojiID !== undefined) {
