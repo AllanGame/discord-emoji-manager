@@ -1,5 +1,5 @@
 # discord-emoji-manager
-[Add the bot to your server](https://discord.com)
+[Add the bot to your server](https://discord.com/oauth2/authorize?client_id=819662243971989567&scope=bot&permissions=1074056256)
 
 
 ## Information
