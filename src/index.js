@@ -41,7 +41,7 @@ global.fe = function fe(title, description, color, timestamp, author, footer, im
     if(description)embed.setDescription(description);
     if(color)embed.setColor(color);else embed.setColor('RANDOM');
     if(timestamp)embed.setTimestamp(new Date());
-    if(author)embed.setAuthor(author[0], author[1], author[2]);
+    if(author)embed.setAuthor(author[0], author[1], !author[2] ? "" : author[2]);
     if(footer)embed.setFooter(footer[0], footer[1]);
     if(image)embed.setImage(image);
     if(thumbnail)embed.setThumbnail(thumbnail);

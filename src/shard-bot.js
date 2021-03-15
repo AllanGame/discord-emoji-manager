@@ -1,11 +1,9 @@
-const Discord = require('discord.js')
-const client = new Discord.Client();
+const Discord = require('discord.js');
+const Client = require('./lib/Client.js');
+const client = new Client();
 const mongoose = require("mongoose");
 const data = require("./utils/data.json");
 let fs = require("fs");
-
-client.commands = new Discord.Collection();
-client.cooldowns = new Discord.Collection();
 
 fs.readdir(__dirname + "/commands", (err, files) => {
     if(err) {

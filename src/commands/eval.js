@@ -5,7 +5,7 @@ module.exports = {
     alias: ["e", "evaluate"],
     cooldown: 3,
     onlyowner: false,
-    onlydev: true,
+    onlydev: false,
     perms: [],
     /**
      * @param {Discord.Client} client
