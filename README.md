@@ -23,11 +23,12 @@ use the !help command for a better explanation with examples <br>
 | add   	   | `{emoji / url} [name]` | Add a new emoji to the server          | MANAGE_EMOJIS	
 | edit   	   | `{emoji / emojiID / emojiName} new name` | Modify the name of an emoji          | MANAGE_EMOJIS	
 | remove   	   | `{emoji / emojiID / emojiName} [reason]` | Remove an emoji from the server, you can use only the name for users who do not have nitro  users who do not have nitro and want to remove an animated emoji     | MANAGE_EMOJIS	
-| role   	   | `{add} {role / everyone} {emojis}` | Make only a certain role use an emoji, if you do `!add everyone :emoji:` all users will be able to use this emoji          | MANAGE_EMOJIS	
+| role   	   | `{add} {role / everyone} {emojis}` | Make only a certain role use an emoji, if you do `!add everyone :emoji:` all users will be able to use this emoji          | MANAGE_EMOJIS
+| info   	   | `{emoji}`  | View a discord custom emoji data |          NONE	
 <!-- | add   	   | `{emoji / url} [name]` | Add a new emoji to the server          | MANAGE_EMOJIS	
 | add   	   | `{emoji / url} [name]` | Add a new emoji to the server          | MANAGE_EMOJIS	
 | add   	   | `{emoji / url} [name]` | Add a new emoji to the server          | MANAGE_EMOJIS -->
-| info   	   | `{emoji}`  | View a discord custom emoji data |          NONE
+
 
 ## To-do List
 - Dashboard
