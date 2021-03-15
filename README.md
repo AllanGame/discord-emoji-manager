@@ -27,6 +27,7 @@ use the !help command for a better explanation with examples <br>
 <!-- | add   	   | `{emoji / url} [name]` | Add a new emoji to the server          | MANAGE_EMOJIS	
 | add   	   | `{emoji / url} [name]` | Add a new emoji to the server          | MANAGE_EMOJIS	
 | add   	   | `{emoji / url} [name]` | Add a new emoji to the server          | MANAGE_EMOJIS -->
+| info   	   | `{emoji}` | View a discord custom emoji data | NONE
 
 ## To-do List
 - Dashboard
