@@ -32,7 +32,7 @@ module.exports = {
 
         if (emojiTarget.id) {
           if (client.emojis.cache.find((emoji) => emoji.id === emojiTarget.id) === undefined) {
-            return message.channel.send(b("that emoji isnt from this guild!"));
+            return message.inlineReply(b("that emoji isnt from this guild!"));
           }
         }
 
@@ -45,9 +45,9 @@ module.exports = {
             .roles.set(roleTarget)
             .then((r) => {
               if (args[1] === "everyone") {
-                message.channel.send(b(`Perfect! now all users can use the next emojis: ${emojis}`));
+                message.inlineReply(b(`Perfect! now all users can use the next emojis: ${emojis}`));
               } else {
-                message.channel.send(b(`Perfect! now only users with ${roleTarget} can use the next emojis: ${emojis}`));
+                message.inlineReply(b(`Perfect! now only users with ${roleTarget} can use the next emojis: ${emojis}`));
               }
             });
         }

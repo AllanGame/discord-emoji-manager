@@ -27,13 +27,13 @@ module.exports = {
             let emojis = args.slice(1);
             let msg = [];
             if(!args[1]) {
-                return message.channel.send(b('Please provide emojis to add!'))
+                return message.inlineReply(b('Please provide emojis to add!'))
             }
 
             for(i=0; i<emojis.length; i++) {
                 let emoji = Discord.Util.parseEmoji(emojis[i]);
                 if(emoji.id === undefined || emoji.id === null) {
-                    message.channel.send(b("`" + emojis[i] + "` Isn't a valid emoji!"));
+                    message.inlineReply(b("`" + emojis[i] + "` Isn't a valid emoji!"));
                     break;
                 }
                 let emojiURL; 
@@ -42,10 +42,10 @@ module.exports = {
                 emojiURL = "https://cdn.discordapp.com/emojis/"+emoji.id+emojiExtention+"?v=1";
 
                 message.guild.emojis.create(emojiURL, emoji.name)
-                .then(emoji => message.channel.send("<:emojiAdded:819655097017172009> Added: "+ emoji.toString()))
+                .then(emoji => message.inlineReply("<:emojiAdded:819655097017172009> Added: "+ emoji.toString()))
                 .catch(error => {
                     if(error.code === 30008) {
-                        message.channel.send(error.message)
+                        message.inlineReply(error.message);
                     }
                 });                
 
@@ -59,7 +59,7 @@ module.exports = {
              let emojiExtention = "";
              let emojiIsAttachment = false;
              if(!args[0]) {
-                 return message.channel.send(b('Please provide an emoji!'));
+                 return message.inlineReply(b('Please provide an emoji!'));
              }
              let emoji = Discord.Util.parseEmoji(args[0]);
              if(emoji.id === undefined || emoji.id === null) {
@@ -67,7 +67,7 @@ module.exports = {
                      emojiURL = message.attachments.values().next().value.url;
                      emojiIsAttachment = true;
                  } else {
-                    message.channel.send(b("Invalid emoji!"));
+                    message.inlineReply(b("Invalid emoji!"));
                  }
              }
 
@@ -84,7 +84,7 @@ module.exports = {
             .catch(error => {
                 console.log(error)
                 if(error.code === 30008) {
-                    message.channel.send(b(error.message))
+                    message.inlineReply(b(error.message))
                 }
             });   
             return;
@@ -97,7 +97,7 @@ module.exports = {
              let emojiName = args[0];
 
              if(!/^[a-zA-Z0-9]*$/.test(emojiName)){
-                return message.channel.send(b("<:error:819654964628160527> Invalid name!"))
+                return message.inlineReply(b("<:error:819654964628160527> Invalid name!"))
             }
              message.guild.emojis.create(emojiURL, emojiName)
                  .then(emoji => message.channel.send(b("<:emojiAdded:819655097017172009> Added: "+ emoji.toString())))
