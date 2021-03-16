@@ -25,7 +25,7 @@ module.exports = (client) =>  {
                 data: {
                     type: 4,
                     data: {
-                        content: `> __**Useful links**__\n\n**Bot invite**: [Click here](https://discord.com/oauth2/authorize?client_id=819662243971989567&scope=bot&permissions=8)\n**Oficial server**: [Click here](https://google.com/)\n\n**Developed by**: \`${require('../utils/misc.json').owners.id.map(x=>client.users.cache.get(x).tag).join('`, `')}\``
+                        content: `> __**Useful links**__\n\n**Bot invite**: [Click here](<https://discord.com/oauth2/authorize?client_id=819662243971989567&scope=bot&permissions=8>)\n**Oficial server**: [Click here](<https://google.com/>)\n\n**Developed by**: \`${require('../utils/misc.json').owners.id.map(x=>client.users.cache.get(x).tag).join('`, `')}\``
                     }
                 }
             });
