@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 module.exports = {
   name: "role",
+  description: "Set roles for an emoji to deny access to everyone/other roles",
   usage: "role <role> <emojis>",
   alias: ["setrole"],
   onlyowner: false,

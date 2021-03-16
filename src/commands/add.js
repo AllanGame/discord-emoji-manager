@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 module.exports = {
     name: "add",
+    description: "Add an emoji to your server",
     usage: "add <name> <url || attachment>",
     alias: ["agregar"],
     onlyowner: false,

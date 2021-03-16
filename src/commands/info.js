@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 module.exports = {
     name: "info",
+    description: "Get the info of a emoji",
     usage: "info <emoji>",
     alias: ["emoji-info"],
     onlyowner: false,

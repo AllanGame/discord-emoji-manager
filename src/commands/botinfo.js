@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 module.exports = {
         name: "botinfo",
+        description: "View the bot info",
         usage: "botinfo",
         alias: ["infobot", "bot-info"],
         onlyowner: false,

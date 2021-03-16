@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
-const Client = require('./lib/Client.js');
+const Client = require('./lib/Client');
+require('./lib/CStructure');
 const client = new Client();
 const mongoose = require("mongoose");
 const data = require("./utils/data.json");

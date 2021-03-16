@@ -1,11 +1,12 @@
 const Discord = require("discord.js");
 module.exports = {
     name: "eval",
+    description: "E-evaluate? :flushed:",
     usage: "eval <code>",
     alias: ["e", "evaluate"],
     cooldown: 3,
     onlyowner: false,
-    onlydev: false,
+    onlydev: true,
     perms: [],
     /**
      * @param {Discord.Client} client

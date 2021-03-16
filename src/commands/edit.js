@@ -1,7 +1,8 @@
 const Discord = require("discord.js");
 module.exports = {
     name: "edit",
-    usage: "edit emoji",
+    description: "Edit a emoji",
+    usage: "edit [emoji] [newName]",
     alias: ["editar"],
     onlyowner: false,
     onlydev: false,
