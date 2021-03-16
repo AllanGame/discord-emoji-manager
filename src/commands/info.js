@@ -16,7 +16,7 @@ module.exports = {
      */
     run: (client, message, args, storage) => {
         const has = /<a?:.+:\d+>/gm;
-        if (!args[0]) return message.reply(b("<:error:819654964628160527> Put the emoji or emoji id to get the data"));
+        if (!args[0]) return message.inlineReply(b("<:error:819654964628160527> Put the emoji or emoji id to get the data"));
         let emoji = args[0];
         const ranges = [
             '\ud83c[\udf00-\udfff]', // U+1F300 to U+1F3FF
@@ -26,7 +26,7 @@ module.exports = {
         ].join('|');
         const sc = s => s.replace(new RegExp(ranges, 'g'), '');
         if (!sc(emoji).length) return message.channel.send(b("<:error:819654964628160527> The emoji you just inserted is a unicode emoji, currently I don't support these emojis, but soon I will!"));
-        if (!has.test(emoji) && !client.emojis.cache.has(emoji)) return message.channel.send(b("<:error:819654964628160527> Invalid emoji."));
+        if (!has.test(emoji) && !client.emojis.cache.has(emoji) && !client.emojis.cache.find(x=>x==emoji.replace(':', ''))) return message.channel.send(b("<:error:819654964628160527> Invalid emoji."));
 
         const embed = new Discord.MessageEmbed()
             .setColor(message.member.displayHexColor === "#000000" ? 'RANDOM' : message.member.displayHexColor)
@@ -47,7 +47,7 @@ module.exports = {
 
         embed.setDescription(`
         🆔 **ID**: \`${e.id}\`
-        
+
         <:gif:818988133269372960> **Animated**: \`${e.animated ? 'Yes' : 'No'}\`
         <:discord_logo:818990574979514388> **Guild**: \`${e.guild.name}\`
         <:role:818987653118689360> **Roles that can use this emoji**: ${roles.length < 1 ? '@everyone' : roles.join(", ")}
