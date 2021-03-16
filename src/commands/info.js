@@ -46,7 +46,8 @@ module.exports = {
         });
 
         embed.setDescription(`
-        > 🆔 **ID**: \`${e.id}\`
+        🆔 **ID**: \`${e.id}\`
+        
         <:gif:818988133269372960> **Animated**: \`${e.animated ? 'Yes' : 'No'}\`
         <:discord_logo:818990574979514388> **Guild**: \`${e.guild.name}\`
         <:role:818987653118689360> **Roles that can use this emoji**: ${roles.length < 1 ? '@everyone' : roles.join(", ")}
