@@ -28,7 +28,7 @@ module.exports = {
         //let name = emoji.split(':')[1];
         //let id = emoji.split(':')[2].replace(">","");
         if (!sc(emoji).length) return message.channel.send(b("<:error:819654964628160527> The emoji you just inserted is a unicode emoji, currently I don't support these emojis, but soon I will!"));
-        if (!has.test(emoji) && !client.emojis.cache.find(x=>x.name==emoji.replace(':', '')||x===)) return message.channel.send(b("<:error:819654964628160527> Invalid emoji."));
+        if (!has.test(emoji) && !client.emojis.cache.find(x=>x.name==emoji.replace(':', ''))) return message.channel.send(b("<:error:819654964628160527> Invalid emoji."));
 
         const embed = new Discord.MessageEmbed()
             .setColor(message.member.displayHexColor === "#000000" ? 'RANDOM' : message.member.displayHexColor)
