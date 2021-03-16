@@ -1,4 +1,5 @@
 const Client = require('../lib/Client');
+const moment = require('moment'); 
 /**
  * @param {Client} client 
  */
@@ -6,6 +7,15 @@ module.exports = (client) =>  {
     client.user.setActivity(`👌🤑🤬😭`, {
         type: "COMPETING"
     });
+
+    // on bot start log
+    client.channels.cache.get("821220369175937025").send(fe(
+    "Bot is ready",
+    "Started at:" + moment().format('LLLL') +
+    "\nCommands loaded: not finished" +
+    "\nEvents loaded: not finished" +
+    "\nTotal bot guilds: "+ client.guilds.cache.size +
+    "\nTotal bot users: "+ client.users.cache.size))
 
     client.ws.on('INTERACTION_CREATE', async interaction => {
         const command = interaction.data.name.toLowerCase();
