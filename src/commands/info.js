@@ -51,6 +51,7 @@ module.exports = {
         <:gif:818988133269372960> **Animated**: \`${e.animated ? 'Yes' : 'No'}\`
         <:discord_logo:818990574979514388> **Guild**: \`${e.guild.name}\`
         <:role:818987653118689360> **Roles that can use this emoji**: ${roles.length < 1 ? '@everyone' : roles.join(", ")}
+        <:cooldown:818987759636447232> **Created at**: ${new Date(e.createdAt).toUTCString()}
         `)
             .setThumbnail(e.url);
         message.channel.send(embed);
