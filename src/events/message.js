@@ -45,7 +45,7 @@ module.exports = (client, message) =>  {
             if(!guild) {
                 const newGuildSchema = new GuildSchema({
                     guildID: message.guild.id,
-                    prefix: "!" || new RegExp(`^<@!?${client.user.id}>( |)$`)
+                    prefix: "!"
                 });
                 return newGuildSchema.save();
             }

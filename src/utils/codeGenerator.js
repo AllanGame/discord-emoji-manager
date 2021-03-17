@@ -6,8 +6,6 @@ function generateCode(len){
 		for(i=0; i<len; i++){
 			code+=keys.charAt(Math.floor(Math.random()*keys.length));
 		}
-
 	return code;
 }
-
 exports.generateCode = generateCode;

@@ -17,7 +17,7 @@ module.exports = {
     run: (client, message, args, storage) => {
         
         if(message.guild.id !== storage.misc.config.devGuild) {
-            return message.inlineReply("Sorry master, for security reasons i do not allow you to use that command here.")
+            return message.inlineReply("Sorry master, for security reasons i do not allow you to use that command here.");
         }
 
         let code = args.join(" ");

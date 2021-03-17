@@ -19,22 +19,22 @@ module.exports = {
     const limit = 2000;
     let userlist = [];
     for(let user of client.users.cache.values()){
-        userlist.push("`"+user.username+ "#" + user.discriminator + "`")
+        userlist.push("`"+user.username+ "#" + user.discriminator + "`");
     }
 
-    users = userlist.join(",  ")
+    users = userlist.join(",  ");
 
-    let usersEmbed = new Discord.MessageEmbed()
-    usersEmbed.setTitle('Bot Users')
-    usersEmbed.setDescription(users)
+    let usersEmbed = new Discord.MessageEmbed();
+    usersEmbed.setTitle('Bot Users');
+    usersEmbed.setDescription(users);
     if(users.length > limit) {
-      console.log(users)
-      let newLimit = users.slice(0, limit)
-      usersEmbed.setDescription(newLimit)
-      usersEmbed.setFooter("Check console for full list")
+      console.log(users);
+      let newLimit = users.slice(0, limit);
+      usersEmbed.setDescription(newLimit);
+      usersEmbed.setFooter("Check console for full list");
     }
 
-    message.inlineReply(usersEmbed)
+    message.inlineReply(usersEmbed);
 
   }
 }

@@ -41,7 +41,7 @@ module.exports = {
         let previousName = emojiTarget.name;
 
         if(!/^[a-zA-Z0-9]*$/.test(newName)){
-            return message.channel.send(b("<:error:819654964628160527> Invalid name!"))
+            return message.channel.send(b("<:error:819654964628160527> Invalid name!"));
         }
 
         emojiTarget.edit({ name: newName }).then(e => {
@@ -54,8 +54,8 @@ module.exports = {
                 "\nPrevious name: `" + previousName + "`" +
                 "\n New name: `" + e.name + "`"
                 )
-            .setColor(`RANDOM`))
-            })
+            .setColor(`RANDOM`));
+            });
 
     }
 }

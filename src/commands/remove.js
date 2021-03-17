@@ -21,19 +21,19 @@ module.exports = {
          */
 
         if (!args[0]) {
-            return message.channel.send(b("<:error:819654964628160527> Provide an emoji to remove"))
+            return message.channel.send(b("<:error:819654964628160527> Provide an emoji to remove"));
         }
 
         let reason = args[1];
         let emojiTarget;
 
-        if (!reason) reason = "removed by " + message.author.tag + " without reason"
+        if (!reason) reason = "removed by " + message.author.tag + " without reason";
 
         let emojiID = message.guild.emojis.cache.get(args[0]);
         if (emojiID !== undefined) {
             emojiTarget = emojiID;
             emojiTarget.delete(reason).then(r => {
-                message.channel.send(b(`<:emojiRemoved:819232995213836358> The emoji \`${r.name}\` was succesfully deleted with the reason \`${reason}\``))
+                message.channel.send(b(`<:emojiRemoved:819232995213836358> The emoji \`${r.name}\` was succesfully deleted with the reason \`${reason}\``));
             })
             return;
         }
@@ -42,7 +42,7 @@ module.exports = {
         if (emojiName !== undefined) {
             emojiTarget = emojiName;
             emojiTarget.delete(reason).then(r => {
-                message.channel.send(b(`<:emojiRemoved:819232995213836358> The emoji \`${r.name}\` was succesfully deleted with the reason \`${reason}\``))
+                message.channel.send(b(`<:emojiRemoved:819232995213836358> The emoji \`${r.name}\` was succesfully deleted with the reason \`${reason}\``));
             })
             return;
         }
@@ -56,12 +56,12 @@ module.exports = {
             emojiTarget = message.guild.emojis.cache.get(parseEmoji.id);
 
             emojiTarget.delete(reason).then(r => {
-                message.channel.send(b(`<:emojiRemoved:819232995213836358> The emoji \`${r.name}\` was succesfully deleted with the reason \`${reason}\``))
+                message.channel.send(b(`<:emojiRemoved:819232995213836358> The emoji \`${r.name}\` was succesfully deleted with the reason \`${reason}\``));
             })
 
 
         } else {
-            return message.channel.send(b("<:error:819654964628160527> Invalid emoji"))
+            return message.channel.send(b("<:error:819654964628160527> Invalid emoji"));
         }
 
     }

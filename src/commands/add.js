@@ -27,7 +27,7 @@ module.exports = {
             let emojis = args.slice(1);
             let msg = [];
             if(!args[1]) {
-                return message.inlineReply(b('Please provide emojis to add!'))
+                return message.inlineReply(b('Please provide emojis to add!'));
             }
 
             for(i=0; i<emojis.length; i++) {
@@ -84,7 +84,7 @@ module.exports = {
             .catch(error => {
                 console.log(error)
                 if(error.code === 30008) {
-                    message.inlineReply(b(error.message))
+                    message.inlineReply(b(error.message));
                 }
             });   
             return;
@@ -97,17 +97,17 @@ module.exports = {
              let emojiName = args[0];
 
              if(!/^[a-zA-Z0-9]*$/.test(emojiName)){
-                return message.inlineReply(b("<:error:819654964628160527> Invalid name!"))
+                return message.inlineReply(b("<:error:819654964628160527> Invalid name!"));
             }
              message.guild.emojis.create(emojiURL, emojiName)
                  .then(emoji => message.channel.send(b("<:emojiAdded:819655097017172009> Added: "+ emoji.toString())))
                  .catch(error => {
                      console.log(error)
                      if(error.code === 30008) {
-                         message.channel.send(b("<:error:819654964628160527> " +error.message))
+                         message.channel.send(b("<:error:819654964628160527> " +error.message));
                      }
                      if(error.code === 50035) {
-                         message.channel.send(b("<:error:819654964628160527> "+ error.message))
+                         message.channel.send(b("<:error:819654964628160527> "+ error.message));
                      }
                  });
          }

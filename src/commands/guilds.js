@@ -19,12 +19,12 @@ module.exports = {
 
     let serverlist = [];
     for(let server of client.guilds.cache.values()){
-        serverlist.push("`"+server.name+"`")
+        serverlist.push("`"+server.name+"`");
     }
 
     let guildsEmbed = new Discord.MessageEmbed()
     .setTitle("Bot Guilds")
-    .setDescription(serverlist.join("- ** **"))
-    message.inlineReply(guildsEmbed)
+    .setDescription(serverlist.join("- ** **"));
+    message.inlineReply(guildsEmbed);
   }
 }
