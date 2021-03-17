@@ -6,7 +6,7 @@ app.listen(3242);
 const { ShardingManager, MessageEmbed } = require('discord.js');
 const shards = new ShardingManager('./shard-bot.js', {
   token: require("./utils/data.json").token.discord,
-  totalShards: 'auto',
+  totalShards: "auto",
   autoSpawn: true
 });
 

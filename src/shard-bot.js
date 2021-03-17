@@ -1,5 +1,5 @@
-const {MessageEmbed} = require('discord.js');
-const Client = require('./lib/Client');
+const {MessageEmbed} = require("discord.js");
+const Client = require("./lib/Client");
 require('./lib/CStructure');
 const client = new Client();
 const mongoose = require("mongoose");
@@ -11,14 +11,14 @@ global.b = function b(text) {
 
 global.fe = function fe(title, description, color, timestamp, author, footer, image, thumbnail) {
     const embed = new MessageEmbed();
-    if(title)embed.setTitle(title);
-    if(description)embed.setDescription(description);
-    if(color)embed.setColor(color);else embed.setColor('RANDOM');
-    if(timestamp)embed.setTimestamp(new Date());
-    if(author)embed.setAuthor(author[0], author[1], !author[2] ? "" : author[2]);
-    if(footer)embed.setFooter(footer[0], footer[1]);
-    if(image)embed.setImage(image);
-    if(thumbnail)embed.setThumbnail(thumbnail);
+    if(title) { embed.setTitle(title); }
+    if(description) { embed.setDescription(description); }
+    if(color) { embed.setColor(color); } else { embed.setColor('RANDOM'); }
+    if(timestamp) { embed.setTimestamp(new Date()); }
+    if(author) { embed.setAuthor(author[0], author[1], !author[2] ? "" : author[2]); }
+    if(footer) { embed.setFooter(footer[0], footer[1]); }
+    if(image) { embed.setImage(image); }
+    if(thumbnail) { embed.setThumbnail(thumbnail); }
     return embed;
 }
 fs.readdir(__dirname + "/commands", (err, files) => {

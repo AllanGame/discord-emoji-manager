@@ -90,7 +90,7 @@ module.exports = {
         ${cmd.onlydev ? "This command can be used by the bot owners" : ""}`)
         .setFooter(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
         .setTimestamp(Date.now());
-      message.inlineReply({ embed: embed });
+      message.inlineReply({ embed });
     }
   },
 };

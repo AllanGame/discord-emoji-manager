@@ -3,14 +3,14 @@ const axios = require('axios').default;
 const api = "https://discord.com/api/v8";
 
 const obj1 = {
-    guild: '',
-    commandID: ''
+    guild: "",
+    commandID: ""
 }
 
 const obj2 = {
-    name: '',
-    description: '',
-    guildID: ''
+    name: "",
+    description: "",
+    guildID: ""
 }
 
 module.exports = class SlashCommands {
@@ -42,7 +42,9 @@ module.exports = class SlashCommands {
      */
     async createCommand(options) {
         return new Promise(async (s, r) => {
-            if (!options.name || !options.description) r("invalid arguments");
+            if (!options.name || !options.description) {
+                r("invalid arguments");
+            }
             const url = options.guildID ?
                 `${api}/applications/${this.client.user.id}/guilds/${options.guildID}/commands` :
                 `${api}/applications/${this.client.user.id}/commands`;

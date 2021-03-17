@@ -31,7 +31,7 @@ module.exports = {
         let emojiTarget = Discord.Util.parseEmoji(emojis[i]);
 
         if (emojiTarget.id) {
-          if (client.emojis.cache.find((emoji) => emoji.id === emojiTarget.id) === undefined) {
+          if (client.emojis.cache.find((emoji) => emoji.id === emojiTarget.id) === "undefined") {
             return message.inlineReply(b("that emoji isnt from this guild!"));
           }
         }

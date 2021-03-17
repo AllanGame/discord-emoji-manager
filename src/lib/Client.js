@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const Discord = require("discord.js");
 const SC = require('./slashCommands');
 
 module.exports = class EmoterClient extends Discord.Client {
@@ -21,4 +21,4 @@ module.exports = class EmoterClient extends Discord.Client {
         });
 
     }
-}
+};
