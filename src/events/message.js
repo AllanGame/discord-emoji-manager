@@ -109,6 +109,7 @@ module.exports = (client, message) =>  {
             }
 
             var storage = {
+                misc: misc,
                 guild: guild,
                 user: user,
                 lang: lang,
