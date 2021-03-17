@@ -40,7 +40,7 @@ module.exports = {
 
         chooseFaqs.on("collect", async (r) => {
           r.users.remove(message.author);
-          faqsEmbed = new Discord.MessageEmbed()
+          let faqsEmbed = new Discord.MessageEmbed()
             .setTitle("Emoter Faqs")
             .setDescription("FAQS \n *React with the emojis below to change the page*")
             .setFooter("Visit our website https://emoter.gg/ ");
@@ -66,7 +66,7 @@ module.exports = {
         });
         chooseEmojiLibrary.on("collect", async (r) => {
           r.users.remove(message.author);
-          emojiLibraryEmbed = new Discord.MessageEmbed()
+          let emojiLibraryEmbed = new Discord.MessageEmbed()
             .setTitle("Emoter Emoji Library")
             .setDescription("EMOJI LIBRARY \n *React with the emojis below to change the page*")
             .setFooter("Visit our website https://emoter.gg/ ");
@@ -82,32 +82,14 @@ module.exports = {
       let embed = new Discord.MessageEmbed()
         .setAuthor("Command: " + cmd.name, "https://cdn.discordapp.com/emojis/819222681273761842.png?v=1")
         .setDescription(
-          `${cmd.description}
-
+        `${cmd.description}
         **Usage**: ${cmd.usage}
         **Cooldown**: ${cmd.cooldown}
-        ${
-          cmd.aliases
-            ? cmd.aliases.length > 0
-              ? "**Aliases**: " + cmd.aliases.join(", ")
-              : "\n"
-            : "\n"
-        }
-
-        ${
-          cmd.onlyowner
-            ? "This command can only be used by the server owner"
-            : ""
-        }
-        ${cmd.onlydev ? "This command can be used by the bot owners" : ""}
-        `
-        )
-        .setFooter(
-          message.author.tag,
-          message.author.displayAvatarURL({ dynamic: true })
-        )
+        ${cmd.aliases.length > 0 ? "**Aliases**: " + cmd.aliases.join(", "): "\n"}
+        ${cmd.onlyowner? "This command can only be used by the server owner": ""}
+        ${cmd.onlydev ? "This command can be used by the bot owners" : ""}`)
+        .setFooter(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
         .setTimestamp(Date.now());
-
       message.inlineReply({ embed: embed });
     }
   },
