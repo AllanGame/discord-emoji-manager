@@ -109,15 +109,15 @@ module.exports = (client, message) =>  {
             }
 
             var storage = {
-                misc: misc,
-                guild: guild,
-                user: user,
-                lang: lang,
-                prefix: prefix,
-                errorEmbed: errorEmbed,
-                GuildSchema: GuildSchema,
-                UserSchema: UserSchema,
-                Discord: Discord,
+                misc,
+                guild,
+                user,
+                lang,
+                prefix,
+                errorEmbed,
+                GuildSchema,
+                UserSchema,
+                Discord,
                 owners: require('../utils/misc.json').owners
             };
 
