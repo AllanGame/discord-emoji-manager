@@ -1,5 +1,7 @@
 const Client = require('../lib/Client');
 const moment = require('moment'); 
+const Discord = require('discord.js')
+const dev = require('../utils/misc.json').config.dev
 /**
  * @param {Client} client 
  */
@@ -9,13 +11,16 @@ module.exports = (client) =>  {
     });
 
     // on bot start log
-    client.channels.cache.get("821220369175937025").send(fe(
+    client.channels.cache.get("821220369175937025").send(new Discord.MessageEmbed()
+    .setDescription(
     "Bot is ready",
     "Started at:" + moment().format('LLLL') +
     "\nCommands loaded: not finished" +
     "\nEvents loaded: not finished" +
     "\nTotal bot guilds: "+ client.guilds.cache.size +
-    "\nTotal bot users: "+ client.users.cache.size))
+    "\nTotal bot users: "+ client.users.cache.size)
+    .setFooter('Started by '+ dev)
+    )
 
     client.ws.on('INTERACTION_CREATE', async interaction => {
         const command = interaction.data.name.toLowerCase();
