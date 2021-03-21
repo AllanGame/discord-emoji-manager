@@ -1,3 +1,4 @@
+const GuildSchema = require("../models/guild.js");
 module.exports = (client, message) => {
     if(message.channel.type == 'dm') return;
     GuildSchema.findOne({
@@ -21,16 +22,11 @@ module.exports = (client, message) => {
         if(message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))) {
             message.channel.send(`Prefix: \`${prefix}\``);
         }
-        console.log("x debug 1")
         const args = message.content.slice(prefix.length).trim().split(/ +/g);
         const command = args.shift().toLowerCase();
         var cmd = client.commands.get(command) || client.commands.find((c) => c.alias && c.alias.includes(command));
-        console.log("x debug 2")
         if(!cmd) return;
-        console.log("x debug 3")
         let Cmd = new cmd(client);
-        console.log("x debug 4")
-        Cmd.processCommand(message);
-        console.log("x debug 5")
+        Cmd.processCommand(message, guild);
     });
 };

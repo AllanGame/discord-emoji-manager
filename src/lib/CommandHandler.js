@@ -17,7 +17,7 @@ module.exports = class CommandHandler {
         throw new Error("run method is not defined");
     }
 
-    processCommand(message) {
+    processCommand(message, guild) {
         const client = this.client;
     var Discord = require("discord.js");
     var GuildSchema = require("../models/guild.js");
@@ -67,50 +67,50 @@ module.exports = class CommandHandler {
             }
     
     
-            if(cmd.onlyowner) {
+            if(this.options.onlyowner) {
                 if(!misc.owners.id.includes(message.author.id)) {
                     message.channel.send(lang.command.onlydev);
                     return;
                 }
             }
     
-            if(cmd.onlydev) {
+            if(this.options.onlydev) {
                 if(!user.dev) {
                     message.channel.send(lang.command.onlydev);
                     return;
                 }
             }
-            if(!message.member.permissions.has(cmd.perms)) {
+            if(!message.member.permissions.has(this.options.permissions)) {
                 message.channel.send(b("You don't have the sufficient permissions to execute this command."));
                 return;
             }
 
-            var storage = {
+            this.storage = {
                 misc,
                 guild,
                 user,
                 lang,
-                prefix,
+                prefix: guild.prefix,
                 errorEmbed,
                 GuildSchema,
                 UserSchema,
                 Discord,
                 owners: require('../utils/misc.json').owners
             };
-    
-            const cmdCooldown = Math.floor(cmd.cooldown * 1000);
+            const args = message.content.slice(guild.prefix.length).trim().split(/ +/g);
+            const cmdCooldown = Math.floor(!this.options.cooldown ? 1 : this.options.cooldown * 1000);
             const endCooldown = Math.floor(Date.now() + cmdCooldown);
     
-            if(!client.cooldowns.has(`${message.author.id}.${cmd.name}`)) {
-                client.cooldowns.set(`${message.author.id}.${cmd.name}`, 0);
+            if(!client.cooldowns.has(`${message.author.id}.${this.options.name}`)) {
+                client.cooldowns.set(`${message.author.id}.${this.options.name}`, 0);
             }
     
-            const userCooldown = client.cooldowns.get(`${message.author.id}.${cmd.name}`);
+            const userCooldown = client.cooldowns.get(`${message.author.id}.${this.options.name}`);
     
             if(Date.now() < userCooldown) {
                 let restCooldown = userCooldown - Date.now();
                 let seconds = Math.floor(restCooldown / 1000);
-                let cooldownMessage = lang.command.cooldown.replace("{command}", cmd.name).replace("{seconds}", seconds);
+                let cooldownMessage = lang.command.cooldown.replace("{command}", this.options.name).replace("{seconds}", seconds);
                 message.channel.send(cooldownMessage).then((msg) => {
                     msg.delete({timeout: restCooldown});
                 });
@@ -118,12 +118,12 @@ module.exports = class CommandHandler {
             }
             else {
                 try {
-                    this.run(message, args, storage);
-                    client.cooldowns.set(`${message.author.id}.${cmd.name}`, endCooldown);
+                    this.run(message, args);
+                    client.cooldowns.set(`${message.author.id}.${this.options.name}`, endCooldown);
                 } catch(err) {
                     message.channel.send(errorEmbed);
                     console.error(err);
-                    client.channels.resolve("820045148254765116").send(`error \`${cmd.name}\`. for more information check console.\n` + "```js\n" + err + "```");
+                    client.channels.resolve("820045148254765116").send(`error \`${this.options.name}\`. for more information check console.\n` + "```js\n" + err + "```");
                 }
             }
         
