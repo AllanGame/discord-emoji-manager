@@ -1,7 +1,7 @@
 {
     "command": {
       "noperms": "You do not have permissions to execute this command. Required: ",
-      "onlydev": "You do not have permissions to perform this action.",
+      "onlydev": "Currently this commands is only available for developers.",
       "cooldown": "Stop there, you must wait `{seconds} seconds` before using the `{command}` command again!"
     },
     "embed": {

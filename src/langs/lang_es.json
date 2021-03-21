@@ -1,7 +1,7 @@
 {
     "command": {
       "noperms": "No tienes permisos para ejecutar este comando. Requerido: ",
-      "onlydev": "No tienes permisos para realizar esta acción.",
+      "onlydev": "Actualmente este comando es solo para desarroladores.",
       "cooldown": "¡Alto ahí, debes esperar `{seconds} segundos` antes de volver a usar el comando `{command}` de nuevo!"
     },
     "embed": {
