@@ -7,7 +7,7 @@ const dev = require('../utils/misc.json').config.dev
  */
 module.exports = (client) =>  {
     client.user.setActivity(`For mentions | !help`, {
-        type: "LISTENING"
+        type: "WATCHING"
     });
 
     // on bot start log
