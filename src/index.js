@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-app.get('/', (req, res) => res.send(200));
+app.get('/', (req, res) => res.sendStatus(200));
 app.listen(3242);
 
 const { ShardingManager, MessageEmbed } = require('discord.js');
