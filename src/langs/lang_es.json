@@ -25,6 +25,16 @@
     "commands": {
       "dev": {
         "info": "Añade o remueve developers del bot, así como ver la lista de los mismos."
+      },
+    "suggest": {
+      "description": "Sugerir nuevas características para el bot",
+      "nosuggestprovided": "Por favor, agrega una sugerencia para enviar",
+      "succesfully": "¡Tu sugerencia ha sido enviada con éxito al equipo de desarrollo!",
+      "suggestionembed": {
+        "title": "Nueva sugerencia",
+        "description": "{suggest}",
+        "footer": "Enviada por {author}"
+        }
       }
     }
   }

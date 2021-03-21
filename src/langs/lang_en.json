@@ -30,6 +30,16 @@
     },
     "dev": {
       "info": "Add or remove developers from the bot, as well as see the list of them."
+    },
+    "suggest": {
+      "description": "Suggest new features for the bot",
+      "nosuggestprovided": "Please add a suggestion to submit",
+      "succesfully": "Your suggestion has been successfully sent to the development team!",
+      "suggestionembed": {
+        "title": "New suggestion",
+        "description": "{suggest}",
+        "footer": "Sent by {author}"
+        }      
     }
   }
 }
