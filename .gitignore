@@ -2,3 +2,5 @@ node_modules
 .idea
 package-lock.json
 src/utils/data.json
+src/utils/misc.json
+.gitignore
