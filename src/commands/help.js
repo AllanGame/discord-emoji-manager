@@ -1,10 +1,11 @@
 const Discord = require("discord.js");
 const Client = require("../lib/Client");
+let nodisplaycmds = ["eval", "users", "guilds", "react"];
 module.exports = {
   name: "help",
   description: "View all commands",
   usage: "help {command}",
-  alias: ["commands"],
+  alias: ["ayuda"],
   cooldown: 3,
   onlyowner: false,
   onlydev: false,
@@ -24,7 +25,7 @@ module.exports = {
         .addField("Emoji Library", "React with <:emoji:818987710693900329> to see the emoji library information")
         .setFooter("Visit our website https://emoter.gg/ ");
 
-        message.inlineReply(helpEmbed).then(async (msg) => {
+      message.inlineReply(helpEmbed).then(async (msg) => {
         await msg.react("❓");
         await msg.react("<:command:821216655522398239>");
         await msg.react("<:emoji:818987710693900329>");
@@ -34,9 +35,9 @@ module.exports = {
         let commandsFilter = (reaction, user) => reaction.emoji.id === "821216655522398239" && user.id === message.author.id;
         let emojiLibraryFilter = (reaction, user) => reaction.emoji.id === "818987710693900329" && user.id === message.author.id;
 
-        let chooseFaqs = msg.createReactionCollector(faqsFilter, {time: 60000,});
-        let chooseCommands = msg.createReactionCollector(commandsFilter, {time: 60000,});
-        let chooseEmojiLibrary = msg.createReactionCollector(emojiLibraryFilter,{ time: 60000 });
+        let chooseFaqs = msg.createReactionCollector(faqsFilter, { time: 60000, });
+        let chooseCommands = msg.createReactionCollector(commandsFilter, { time: 60000, });
+        let chooseEmojiLibrary = msg.createReactionCollector(emojiLibraryFilter, { time: 60000 });
 
         chooseFaqs.on("collect", async (r) => {
           r.users.remove(message.author);
@@ -50,8 +51,8 @@ module.exports = {
           r.users.remove(message.author);
 
           let commands = client.commands
-            .filter((x) => x.name !== "eval")
-            .map((x) => "▫️ **" + x.name + "** - `" + x.description + "`");
+            .filter((x) => !nodisplaycmds.includes(x.name))
+            .map((x) => ":white_small_square: **" + x.name + "** - `" + x.description + "`");
 
           let commandsEmbed = new Discord.MessageEmbed()
             .setTitle("**      **__List of all commands__")
@@ -82,11 +83,11 @@ module.exports = {
       let embed = new Discord.MessageEmbed()
         .setAuthor("Command: " + cmd.name, "https://cdn.discordapp.com/emojis/819222681273761842.png?v=1")
         .setDescription(
-        `${cmd.description}
+          `${cmd.description}
         **Usage**: ${cmd.usage}
         **Cooldown**: ${cmd.cooldown}
-        ${cmd.aliases.length > 0 ? "**Aliases**: " + cmd.aliases.join(", "): "\n"}
-        ${cmd.onlyowner? "This command can only be used by the server owner": ""}
+        ${cmd.aliases.length > 0 ? "**Aliases**: " + cmd.aliases.join(", ") : "\n"}
+        ${cmd.onlyowner ? "This command can only be used by the server owner" : ""}
         ${cmd.onlydev ? "This command can be used by the bot owners" : ""}`)
         .setFooter(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
         .setTimestamp(Date.now());

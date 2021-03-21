@@ -6,6 +6,7 @@ var arrayArgs = [
 module.exports = {
     name: "language",
     usage: `language <${arrayArgs.join("/")}>`,
+    description: "Change your language",
     alias: ["lang", "idioma"],
     cooldown: 5,
     onlyowner: false,

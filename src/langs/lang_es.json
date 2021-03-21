@@ -5,13 +5,13 @@
       "cooldown": "¡Alto ahí, debes esperar `{seconds} segundos` antes de volver a usar el comando `{command}` de nuevo!"
     },
     "embed": {
-      "error": "Se produjo un error al ejecutar el comando. Si el problema persiste, contáctanos a través de [nuestro grupo de soporte.](discord.gg/invite)",
-      "footer": "Moderatorbot | Contacta a un desarrollador para más información.",
-      "titleerror": "Moderatorbot | Error",
-      "blacklisted": "¡Alto ahí! Has sido blacklisteado de nuestro bot :(\nSi quieres más información únete [a nuestro Discord.](discord.gg/invite)"
+      "error": "Se produjo un error al ejecutar el comando. Si el problema persiste, contáctanos a través de [nuestro grupo de soporte.](https://discord.gg/5PeRxS27)",
+      "footer": "Contacta a un desarrollador para más información.",
+      "titleerror": "Error",
+      "blacklisted": "¡Alto ahí! Has sido blacklisteado de nuestro bot :(\nSi quieres más información únete [a nuestro Discord.](https://discord.gg/5PeRxS27)"
     },
     "langembed": {
-      "title": "Moderatorbot | Idioma",
+      "title": "Idioma",
       "desc": "En esta sección puedes cambiar el lenguaje que verás en el bot. Puedes elegir entre los siguientes idiomas disponibles.",
       "fieldtitles": {
         "avaible": "Disponibles",
