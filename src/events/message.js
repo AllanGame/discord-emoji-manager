@@ -7,7 +7,6 @@ module.exports = (client, message) => {
         if(err) {
             console.error(err);
         }
-        console.log("Debug 1")
 
         if(!guild) {
             const newGuildSchema = new GuildSchema({
