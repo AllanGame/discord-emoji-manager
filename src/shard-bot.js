@@ -42,7 +42,7 @@ fs.readdir(__dirname + "/commands", (err, files) => {
         const Command = new fileContents(client);
         if(typeof Command.options !== 'object')return console.log(`${fileName} command don't have valid settings`);
         if(!Command.options.name)return console.log(`${fileName} command don't have an "name" parametter`);
-        if(!Command.options.category)return console.log(`${fileName} command don't ahve an "category" parametter`);
+        if(!Command.options.category)return console.log(`${fileName} command don't have an "category" parametter`);
         client.commands.set(Command.options.name, Command);
         console.log(`Command ${f} loaded`);
         delete require.cache[require.resolve(`./commands/${fileName}.js`)];
