@@ -2,18 +2,22 @@ var arrayArgs = [
     "en",
     "es",
 ];
+const CommandHandler = require('../lib/CommandHandler');
 
-module.exports = {
-    name: "language",
-    usage: `language <${arrayArgs.join("/")}>`,
-    description: "Change your language",
-    alias: ["lang", "idioma"],
-    cooldown: 5,
-    onlyowner: false,
-    onlydev: false,
-    perms: [],
-    run: (client, message, args, storage) => {
+module.exports = class Command extends CommandHandler {
+    constructor(client) {
+        super(client, {
+            name: "language",
+            description: "Change your language",
+            aliases: ["lang", "idioma"],
+            usage: `language <${arraysArgs.join("/")}>`,
+            category: "settings",
+            permissions: [],
+            cooldown: 5
+        });
+    }
 
+    run(message, args) {
         const Discord = require("discord.js");
         const UserSchema = require("../models/user.js");
 
@@ -49,4 +53,4 @@ module.exports = {
             message.channel.send(storage.errorEmbed);
         });
     }
-};
+}

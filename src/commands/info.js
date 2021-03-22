@@ -1,20 +1,20 @@
 const Discord = require('discord.js');
-module.exports = {
-    name: "info",
-    description: "Get the info of a emoji",
-    usage: "info <emoji>",
-    alias: ["emoji-info"],
-    onlyowner: false,
-    onlydev: false,
-    cooldown: 2,
-    perms: [],
-    /**
-     * @param {Discord.Client} client
-     * @param {Discord.Message} message
-     * @param {String[]} args
-     * @param {any} storage
-     */
-    run: (client, message, args, storage) => {
+const CommandHandler = require('../lib/CommandHandler');
+
+module.exports = class Command extends CommandHandler {
+    constructor(client) {
+        super(client, {
+            name: "info",
+            description: "Get the info of a emoji",
+            aliases: ["emoji-info"],
+            usage: "info <emoji>",
+            category: "emojis",
+            permissions: [],
+            cooldown: 2
+        });
+    }
+
+    run(message, args) {
         const has = /<a?:.+:\d+>/gm;
         if (!args[0]) {
              return message.inlineReply(b("<:error:819654964628160527> Put the emoji or emoji id to get the data"));
@@ -54,6 +54,6 @@ module.exports = {
         <:cooldown:818987759636447232> **Created at**: ${new Date(e.createdAt).toUTCString()}
         `)
             .setThumbnail(e.url);
-        message.channel.send(embed);
+        message.inlineReply(embed);
     }
 }

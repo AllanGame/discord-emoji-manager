@@ -1,21 +1,20 @@
-module.exports = {
-  name: "suggest",
-  description: "Suggest new features for the bot",
-  usage: "!suggest [suggest]",
-  alias: ["sugerir"],
-  onlyowner: false,
-  onlydev: false,
-  cooldown: 60,
-  perms: [],
-  /**
-   * @param {Discord.Client} client
-   * @param {Discord.Message} message
-   * @param {String[]} args
-   * @param {any} storage
-   */
-  run: (client, message, args, storage) => {
+const CommandHandler = require('../lib/CommandHandler');
 
-    let suggest = args.slice(0).join(" ")
+module.exports = class Command extends CommandHandler {
+    constructor(client) {
+        super(client, {
+            name: "suggest",
+            description: "Suggest new features for the bot",
+            aliases: ["sugerir"],
+            usage: "suggest [suggestion]",
+            category: "support",
+            permissions: [],
+            cooldown: 120
+        });
+    }
+
+    run(message, args) {
+      let suggest = args.slice(0).join(" ")
 
     if (!suggest) {
       return message.inlineReply(
@@ -26,17 +25,15 @@ module.exports = {
     client.channels.cache.get("819241043932348497").send(
       new storage.Discord.MessageEmbed()
         .setTitle(
-          storage.lang.commands.suggest.suggestionembed.title
+          this.storage.lang.commands.suggest.suggestionembed.title
         )
         .setDescription(
-          storage.lang.commands.suggest.suggestionembed.description.replace("{suggest}", suggest)
+          this.storage.lang.commands.suggest.suggestionembed.description.replace("{suggest}", suggest)
         )
         .setFooter(
-          storage.lang.commands.suggest.suggestionembed.footer.replace("{author}", message.author.tag + " | " + message.author.id)
+          this.storage.lang.commands.suggest.suggestionembed.footer.replace("{author}", message.author.tag + " | " + message.author.id)
         )
-    ).then((m) => message.inlineReply(storage.lang.commands.suggest.succesfully))
+    ).then((m) => message.inlineReply(this.storage.lang.commands.suggest.succesfully))
 
-
-
-  }
-} 
+    }
+}
