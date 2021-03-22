@@ -31,6 +31,7 @@ module.exports = class Command extends CommandHandler {
   
       message.inlineReply(new Discord.MessageEmbed()
       .setTitle(emoji.name)
+      .setURL(emojiURL)
       .setImage(emojiURL)
       .setColor("RANDOM")
       );

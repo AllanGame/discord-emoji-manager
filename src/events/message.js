@@ -17,13 +17,14 @@ module.exports = (client, message) => {
         }
 
         var prefix = guild.prefix;
-        if(message.author.bot || !message.content.startsWith(prefix)) return;
         if(message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))) {
             message.channel.send(`Prefix: \`${prefix}\``);
         }
-        const args = message.content.slice(prefix.length).trim().split(/ +/g);
-        const command = args.shift().toLowerCase();
-        var cmd = client.commands.get(command) || client.commands.find((c) => c.alias && c.alias.includes(command));
+        if(message.author.bot || !message.content.startsWith(prefix)) return;
+        const args = message.content.split(" ").slice(1);
+      
+        const command = message.content.split(" ")[0].slice(prefix.length).toLowerCase();
+        var cmd = client.commands.get(command) || client.commands.find((c) => c.aliases && c.aliases.includes(command));
         if(!cmd) return;
         cmd.processCommand(message, guild);
     });

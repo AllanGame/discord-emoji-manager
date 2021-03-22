@@ -3,7 +3,7 @@ const Client = require("../lib/Client");
 let nodisplaycmds = ["eval", "users", "guilds", "react"];
 const CommandHandler = require('../lib/CommandHandler');
 
-module.exports = class Command extends CommandHandler {
+module.exports = class HelpCommand extends CommandHandler {
     constructor(client) {
         super(client, {
             name: "help",
@@ -51,9 +51,10 @@ const client = this.client;
           chooseCommands.on("collect", async (r) => {
             r.users.remove(message.author);
   
-            let commands = client.commands
-              .filter((x) => !nodisplaycmds.includes(x.name))
-              .map((x) => ":white_small_square: **" + x.name + "** - `" + x.description + "`");
+            
+        let commands = this.client.commands
+          .filter((x) => !nodisplaycmds.includes(x.options.name))
+          .map((x) => ":white_small_square: **" + x.options.name + "** - `" + x.options.description + "`");
   
             let commandsEmbed = new Discord.MessageEmbed()
               .setTitle("**      **__List of all commands__")

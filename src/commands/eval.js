@@ -15,8 +15,8 @@ module.exports = class Command extends CommandHandler {
         });
     }
 
-    run(message, args) {//client
-        if(message.guild.id !== storage.misc.config.devGuild) {
+    run(message, args) {
+        if(message.guild.id !== this.storage.misc.config.devGuild) {
             return message.inlineReply("Sorry master, for security reasons i do not allow you to use that command here.");
         }
 
@@ -30,13 +30,13 @@ module.exports = class Command extends CommandHandler {
             function evalcode(output) {
                 return `\`\`\`js\n${output}\n\`\`\``;
             }
-
+            const client = this.client;
             function embed(input, output, type, color, footer, large, error) {
                 const e = new Discord.MessageEmbed()
                     .setAuthor(`Evaluated by ${message.author.username}`, `${message.author.displayAvatarURL({ format: "png", dynamic: true, size: 2048 })}`)
-                    .setFooter(`${footer}`, `${this.client.user.displayAvatarURL({ format: "png", dynamic: true, size: 2048 })}`)
-                    .setColor(color);
-
+                    .setColor(color)
+                    .setFooter(`${footer}`, `${client.user.displayAvatarURL({ format: "png", dynamic: true, size: 2048 })}`)
+                    
                 let embed;
 
                 if (error) {

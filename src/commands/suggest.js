@@ -18,11 +18,11 @@ module.exports = class Command extends CommandHandler {
 
     if (!suggest) {
       return message.inlineReply(
-        storage.lang.commands.suggest.nosuggestprovided
+        this.storage.lang.commands.suggest.nosuggestprovided
       )
     }
 
-    client.channels.cache.get("819241043932348497").send(
+    this.client.channels.cache.get("819241043932348497").send(
       new storage.Discord.MessageEmbed()
         .setTitle(
           this.storage.lang.commands.suggest.suggestionembed.title

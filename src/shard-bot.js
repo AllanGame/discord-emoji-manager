@@ -21,7 +21,8 @@ global.fe = function fe(title, description, color, timestamp, author, footer, im
     if(thumbnail) { embed.setThumbnail(thumbnail); }
     return embed;
 }
-fs.readdir(__dirname + "/commands", (err, files) => {
+client.on("ready", () => {
+  fs.readdir(__dirname + "/commands", (err, files) => {
     if(err) {
         console.error(err);
         return;
@@ -43,10 +44,12 @@ fs.readdir(__dirname + "/commands", (err, files) => {
         if(typeof Command.options !== 'object')return console.log(`${fileName} command don't have valid settings`);
         if(!Command.options.name)return console.log(`${fileName} command don't have an "name" parametter`);
         if(!Command.options.category)return console.log(`${fileName} command don't have an "category" parametter`);
+        if(typeof Command.client === 'undefined')return console.log(`${fileName} command client is undefined`)
         client.commands.set(Command.options.name, Command);
-        console.log(`Command ${f} loaded`);
+        //console.log(`Command ${f} loaded`);
         delete require.cache[require.resolve(`./commands/${fileName}.js`)];
     });
+  });
 });
 
 for(const file of fs.readdirSync("./events")) {

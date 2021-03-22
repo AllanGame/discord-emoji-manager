@@ -18,12 +18,10 @@ module.exports = class CommandHandler {
     }
 
     processCommand(message, guild) {
-        const client = this.client;
     var Discord = require("discord.js");
     var GuildSchema = require("../models/guild.js");
     var UserSchema = require("../models/user.js");
-    let misc = require('../utils/misc.json')
-
+    let misc = require('../utils/misc.json');
     UserSchema.findOne({
         userID: message.author.id
     }, (err, user) => {
@@ -97,15 +95,15 @@ module.exports = class CommandHandler {
                 Discord,
                 owners: require('../utils/misc.json').owners
             };
-            const args = message.content.slice(guild.prefix.length).trim().split(/ +/g);
+            const args = message.content.slice(guild.prefix.length).trim().split(/ +/g).slice(1);
             const cmdCooldown = Math.floor(!this.options.cooldown ? 1 : this.options.cooldown * 1000);
             const endCooldown = Math.floor(Date.now() + cmdCooldown);
     
-            if(!client.cooldowns.has(`${message.author.id}.${this.options.name}`)) {
-                client.cooldowns.set(`${message.author.id}.${this.options.name}`, 0);
+            if(!this.client.cooldowns.has(`${message.author.id}.${this.options.name}`)) {
+                this.client.cooldowns.set(`${message.author.id}.${this.options.name}`, 0);
             }
     
-            const userCooldown = client.cooldowns.get(`${message.author.id}.${this.options.name}`);
+            const userCooldown = this.client.cooldowns.get(`${message.author.id}.${this.options.name}`);
     
             if(Date.now() < userCooldown) {
                 let restCooldown = userCooldown - Date.now();
@@ -119,11 +117,11 @@ module.exports = class CommandHandler {
             else {
                 try {
                     this.run(message, args);
-                    client.cooldowns.set(`${message.author.id}.${this.options.name}`, endCooldown);
+                    this.client.cooldowns.set(`${message.author.id}.${this.options.name}`, endCooldown);
                 } catch(err) {
                     message.channel.send(errorEmbed);
                     console.error(err);
-                    client.channels.resolve("820045148254765116").send(`error \`${this.options.name}\`. for more information check console.\n` + "```js\n" + err + "```");
+                    this.client.channels.resolve("820045148254765116").send(`error \`${this.options.name}\`. for more information check console.\n` + "```js\n" + err + "```");
                 }
             }
         
