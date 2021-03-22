@@ -38,13 +38,12 @@ fs.readdir(__dirname + "/commands", (err, files) => {
     jsfiles.forEach((f, i) => {
         let fileName = f.substring(0, f.length - 3);
         let fileContents = require("./commands/" + f);
-        const h = require('./lib/CommandHandler');
-        if(fileName !== "test")return;
+        //const h = require('./lib/CommandHandler');
         const Command = new fileContents(client);
         if(typeof Command.options !== 'object')return console.log(`${fileName} command don't have valid settings`);
         if(!Command.options.name)return console.log(`${fileName} command don't have an "name" parametter`);
         if(!Command.options.category)return console.log(`${fileName} command don't ahve an "category" parametter`);
-        client.commands.set(Command.options.name, fileContents);
+        client.commands.set(Command.options.name, Command);
         console.log(`Command ${f} loaded`);
         delete require.cache[require.resolve(`./commands/${fileName}.js`)];
     });
