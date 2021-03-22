@@ -8,7 +8,7 @@ module.exports = class Command extends CommandHandler {
             description: "Remove an emoji",
             aliases: ["borrar"],
             usage: "remove <emoji>",
-            category: "",
+            category: "emojis",
             permissions: ["MANAGE_EMOJIS"],
             cooldown: 3
         });

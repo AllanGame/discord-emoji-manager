@@ -10,13 +10,14 @@ module.exports = class Command extends CommandHandler {
             description: "Watch the help",
             aliases: ["ayuda"],
             usage: "help {command}",
-            category: "",
+            category: "general",
             permissions: [],
             cooldown: 3
         });
     }
 
     run(message, args) {
+const client = this.client;
       if (!args[0]) {
         let helpEmbed = new Discord.MessageEmbed()
           .setTitle("Emoter Help")

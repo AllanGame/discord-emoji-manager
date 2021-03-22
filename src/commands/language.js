@@ -10,7 +10,7 @@ module.exports = class Command extends CommandHandler {
             name: "language",
             description: "Change your language",
             aliases: ["lang", "idioma"],
-            usage: `language <${arraysArgs.join("/")}>`,
+            usage: `language <${arrayArgs.join("/")}>`,
             category: "settings",
             permissions: [],
             cooldown: 5
