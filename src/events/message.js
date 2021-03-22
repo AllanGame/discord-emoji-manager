@@ -25,7 +25,6 @@ module.exports = (client, message) => {
         const command = args.shift().toLowerCase();
         var cmd = client.commands.get(command) || client.commands.find((c) => c.alias && c.alias.includes(command));
         if(!cmd) return;
-        let Cmd = new cmd(client);
-        Cmd.processCommand(message, guild);
+        cmd.processCommand(message, guild);
     });
 };
