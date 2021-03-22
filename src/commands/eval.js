@@ -8,7 +8,7 @@ module.exports = class Command extends CommandHandler {
             description: "E-evaluate? 😳",
             aliases: [],
             usage: "eval <code>",
-            category: "development",
+            category: "dev",
             onlyowner: true,
             permissions: [],
             cooldown: 3
