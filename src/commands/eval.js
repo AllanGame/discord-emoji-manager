@@ -1,22 +1,22 @@
 const Discord = require("discord.js");
-module.exports = {
-    name: "eval",
-    description: "E-evaluate? :flushed:",
-    usage: "eval <code>",
-    alias: ["e", "evaluate"],
-    cooldown: 3,
-    onlyowner: false,
-    onlydev: true,
-    perms: [],
-    /**
-     * @param {Discord.Client} client
-     * @param {Discord.Message} message
-     * @param {String[]} args
-     * @param {any} storage
-     */
-    run: (client, message, args, storage) => {
-        
-        if(message.guild.id !== storage.misc.config.devGuild) {
+const CommandHandler = require('../lib/CommandHandler');
+
+module.exports = class Command extends CommandHandler {
+    constructor(client) {
+        super(client, {
+            name: "eval",
+            description: "E-evaluate? 😳",
+            aliases: [],
+            usage: "eval <code>",
+            category: "dev",
+            onlyowner: true,
+            permissions: [],
+            cooldown: 3
+        });
+    }
+
+    run(message, args) {
+        if(message.guild.id !== this.storage.misc.config.devGuild) {
             return message.inlineReply("Sorry master, for security reasons i do not allow you to use that command here.");
         }
 
@@ -30,13 +30,13 @@ module.exports = {
             function evalcode(output) {
                 return `\`\`\`js\n${output}\n\`\`\``;
             }
-
+            const client = this.client;
             function embed(input, output, type, color, footer, large, error) {
                 const e = new Discord.MessageEmbed()
                     .setAuthor(`Evaluated by ${message.author.username}`, `${message.author.displayAvatarURL({ format: "png", dynamic: true, size: 2048 })}`)
+                    .setColor(color)
                     .setFooter(`${footer}`, `${client.user.displayAvatarURL({ format: "png", dynamic: true, size: 2048 })}`)
-                    .setColor(color);
-
+                    
                 let embed;
 
                 if (error) {
@@ -101,6 +101,5 @@ module.exports = {
             }
 
         }
-
     }
-};
+}

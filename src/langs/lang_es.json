@@ -1,17 +1,17 @@
 {
     "command": {
       "noperms": "No tienes permisos para ejecutar este comando. Requerido: ",
-      "onlydev": "No tienes permisos para realizar esta acción.",
+      "onlydev": "Actualmente este comando es solo para desarroladores.",
       "cooldown": "¡Alto ahí, debes esperar `{seconds} segundos` antes de volver a usar el comando `{command}` de nuevo!"
     },
     "embed": {
-      "error": "Se produjo un error al ejecutar el comando. Si el problema persiste, contáctanos a través de [nuestro grupo de soporte.](discord.gg/invite)",
-      "footer": "Moderatorbot | Contacta a un desarrollador para más información.",
-      "titleerror": "Moderatorbot | Error",
-      "blacklisted": "¡Alto ahí! Has sido blacklisteado de nuestro bot :(\nSi quieres más información únete [a nuestro Discord.](discord.gg/invite)"
+      "error": "Se produjo un error al ejecutar el comando. Si el problema persiste, contáctanos a través de [nuestro grupo de soporte.](https://discord.gg/5PeRxS27)",
+      "footer": "Contacta a un desarrollador para más información.",
+      "titleerror": "Error",
+      "blacklisted": "¡Alto ahí! Has sido blacklisteado de nuestro bot :(\nSi quieres más información únete [a nuestro Discord.](https://discord.gg/5PeRxS27)"
     },
     "langembed": {
-      "title": "Moderatorbot | Idioma",
+      "title": "Idioma",
       "desc": "En esta sección puedes cambiar el lenguaje que verás en el bot. Puedes elegir entre los siguientes idiomas disponibles.",
       "fieldtitles": {
         "avaible": "Disponibles",
@@ -25,6 +25,16 @@
     "commands": {
       "dev": {
         "info": "Añade o remueve developers del bot, así como ver la lista de los mismos."
+      },
+    "suggest": {
+      "description": "Sugerir nuevas características para el bot",
+      "nosuggestprovided": "Por favor, agrega una sugerencia para enviar",
+      "succesfully": "¡Tu sugerencia ha sido enviada con éxito al equipo de desarrollo!",
+      "suggestionembed": {
+        "title": "Nueva sugerencia",
+        "description": "{suggest}",
+        "footer": "Enviada por {author}"
+        }
       }
     }
   }

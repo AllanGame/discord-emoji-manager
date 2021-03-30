@@ -1,20 +1,20 @@
 const Discord = require("discord.js");
-module.exports = {
-    name: "add",
-    description: "Add an emoji to your server",
-    usage: "add <name> <url || attachment>",
-    alias: ["agregar"],
-    onlyowner: false,
-    onlydev: false,
-    cooldown: 10,
-    perms: ["MANAGE_EMOJIS"],
-    /**
-     * @param {Discord.Client} client
-     * @param {Discord.Message} message
-     * @param {String[]} args
-     * @param {any} storage
-     */
-    run: (client, message, args, storage) => {
+const CommandHandler = require('../lib/CommandHandler');
+
+module.exports = class Command extends CommandHandler {
+    constructor(client) {
+        super(client, {
+            name: "add",
+            description: "Add an emoji to your server",
+            aliases: ["agregar"],
+            usage: "add <name> <url || attachment>",
+            category: "emojis",
+            permissions: ["MANAGE_EMOJIS"],
+            cooldown: 10
+        });
+    }
+
+    run(message, args) {
         
         
         /**
@@ -112,4 +112,4 @@ module.exports = {
                  });
          }
     }
-};
+}

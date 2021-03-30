@@ -1,21 +1,20 @@
 const Discord = require("discord.js");
-module.exports = {
-    name: "remove",
-    description: "Remove a emoji",
-    usage: "remove <emoji>",
-    alias: [],
-    onlyowner: false,
-    onlydev: false,
-    cooldown: 3,
-    perms: ["MANAGE_EMOJIS"],
-    /**
-     * @param {Discord.Client} client
-     * @param {Discord.Message} message
-     * @param {String[]} args
-     * @param {any} storage
-     */
-    run: (client, message, args, storage) => {
+const CommandHandler = require('../lib/CommandHandler');
 
+module.exports = class Command extends CommandHandler {
+    constructor(client) {
+        super(client, {
+            name: "remove",
+            description: "Remove an emoji",
+            aliases: ["borrar"],
+            usage: "remove <emoji>",
+            category: "emojis",
+            permissions: ["MANAGE_EMOJIS"],
+            cooldown: 3
+        });
+    }
+
+    run(message, args) {
         /**
          * COMMENT: This code sucks, but works 👍
          */
@@ -63,6 +62,5 @@ module.exports = {
         } else {
             return message.channel.send(b("<:error:819654964628160527> Invalid emoji"));
         }
-
     }
-};
+}

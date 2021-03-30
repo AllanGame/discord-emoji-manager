@@ -1,22 +1,21 @@
 const Discord = require("discord.js");
-module.exports = {
-  name: "role",
-  description: "Set roles for an emoji to deny access to everyone/other roles",
-  usage: "role <role> <emojis>",
-  alias: ["setrole"],
-  onlyowner: false,
-  onlydev: false,
-  cooldown: 3,
-  perms: ["MANAGE_EMOJIS"],
-  /**
-   * @param {Discord.Client} client
-   * @param {Discord.Message} message
-   * @param {String[]} args
-   * @param {any} storage
-   */
-  run: (client, message, args, storage) => {
+const CommandHandler = require('../lib/CommandHandler');
 
-    /**
+module.exports = class Command extends CommandHandler {
+    constructor(client) {
+        super(client, {
+            name: "role",
+            description: "Set roles for an emoji to deny access to everyone/other roles",
+            aliases: ["setrole"],
+            usage: "role <role> <emojis>",
+            category: "emojis",
+            permissions: ["MANAGE_EMOJIS"],
+            cooldown: 3
+        });
+    }
+
+    run(message, args) {
+      /**
      * TODO: remove roles 
      */
 
@@ -53,5 +52,5 @@ module.exports = {
         }
       }
     }
-  },
-};
+    }
+}

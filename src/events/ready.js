@@ -6,8 +6,8 @@ const dev = require('../utils/misc.json').config.dev
  * @param {Client} client 
  */
 module.exports = (client) =>  {
-    client.user.setActivity(`👌🤑🤬😭`, {
-        type: "COMPETING"
+    client.user.setActivity(`For mentions | !help`, {
+        type: "WATCHING"
     });
 
     // on bot start log

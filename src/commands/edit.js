@@ -1,22 +1,20 @@
 const Discord = require("discord.js");
-module.exports = {
-    name: "edit",
-    description: "Edit a emoji",
-    usage: "edit [emoji] [newName]",
-    alias: ["editar"],
-    onlyowner: false,
-    onlydev: false,
-    cooldown: 5,
-    perms: ["MANAGE_EMOJIS"],
-    /**
-     * @param {Discord.Client} client
-     * @param {Discord.Message} message
-     * @param {String[]} args
-     * @param {any} storage
-     */
-    run: (client, message, args, storage) => { 
+const CommandHandler = require('../lib/CommandHandler');
 
+module.exports = class Command extends CommandHandler {
+    constructor(client) {
+        super(client, {
+            name: "edit",
+            description: "Edit an emoji",
+            aliases: ["editar"],
+            usage: "edit [emoji] [newName]",
+            category: "emojis",
+            permissions: ["MANAGE_EMOJIS"],
+            cooldown: 5
+        });
+    }
 
+    run(message, args) {
         let emojiTarget = Discord.Util.parseEmoji(args[0]);
         let newName = args[1];
 
@@ -56,6 +54,5 @@ module.exports = {
                 )
             .setColor(`RANDOM`));
             });
-
     }
 }

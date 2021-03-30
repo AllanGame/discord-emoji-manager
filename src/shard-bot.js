@@ -21,7 +21,8 @@ global.fe = function fe(title, description, color, timestamp, author, footer, im
     if(thumbnail) { embed.setThumbnail(thumbnail); }
     return embed;
 }
-fs.readdir(__dirname + "/commands", (err, files) => {
+client.on("ready", () => {
+  fs.readdir(__dirname + "/commands", (err, files) => {
     if(err) {
         console.error(err);
         return;
@@ -38,10 +39,17 @@ fs.readdir(__dirname + "/commands", (err, files) => {
     jsfiles.forEach((f, i) => {
         let fileName = f.substring(0, f.length - 3);
         let fileContents = require("./commands/" + f);
+        //const h = require('./lib/CommandHandler');
+        const Command = new fileContents(client);
+        if(typeof Command.options !== 'object')return console.log(`${fileName} command don't have valid settings`);
+        if(!Command.options.name)return console.log(`${fileName} command don't have an "name" parametter`);
+        if(!Command.options.category)return console.log(`${fileName} command don't have an "category" parametter`);
+        if(typeof Command.client === 'undefined')return console.log(`${fileName} command client is undefined`)
+        client.commands.set(Command.options.name, Command);
         //console.log(`Command ${f} loaded`);
-        client.commands.set(fileName, fileContents);
         delete require.cache[require.resolve(`./commands/${fileName}.js`)];
     });
+  });
 });
 
 for(const file of fs.readdirSync("./events")) {
@@ -67,7 +75,6 @@ mongoose.connect(uri, {
     }
     console.log(`[INFO] Connected to ${data.database.url} (MongoDB)`);
 });
-
 
 client.login(data.token.discord).then(() => {
     console.log(`[INFO] Logged in ${client.user.tag}.`);
