@@ -5,6 +5,7 @@ const userSchema = new mongoose.Schema({
     lang: String,
     blacklisted: Boolean,
     dev: Boolean,
+    emojiCollection: []
 });
 
 module.exports = mongoose.model("User", userSchema);

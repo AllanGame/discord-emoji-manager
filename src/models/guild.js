@@ -5,7 +5,11 @@ const guildSchema = new mongoose.Schema({
     prefix: String,
     sanctions: Number,
     mutedRole: String,
-    modlogsChannel: String
+    modlogsChannel: String,
+    config: {
+      useLibraryEmojis: Boolean,
+      evalCommandAllowed: Boolean
+    }
 });
 
 module.exports = mongoose.model("Guild", guildSchema);

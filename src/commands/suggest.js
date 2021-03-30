@@ -23,7 +23,7 @@ module.exports = class Command extends CommandHandler {
     }
 
     this.client.channels.cache.get("819241043932348497").send(
-      new storage.Discord.MessageEmbed()
+      new this.storage.Discord.MessageEmbed()
         .setTitle(
           this.storage.lang.commands.suggest.suggestionembed.title
         )

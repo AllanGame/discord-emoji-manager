@@ -76,7 +76,6 @@ mongoose.connect(uri, {
     console.log(`[INFO] Connected to ${data.database.url} (MongoDB)`);
 });
 
-
 client.login(data.token.discord).then(() => {
     console.log(`[INFO] Logged in ${client.user.tag}.`);
 }).catch((err) => {

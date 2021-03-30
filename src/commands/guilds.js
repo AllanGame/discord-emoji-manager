@@ -18,13 +18,13 @@ module.exports = class Command extends CommandHandler {
 
     run(message, args) {
       let serverlist = [];
-      for(let server of client.guilds.cache.values()){
-          serverlist.push("`"+server.name+"`");
+      for(let server of this.client.guilds.cache.values()){
+          serverlist.push("**"+server.name+"**");
       }
   
       let guildsEmbed = new Discord.MessageEmbed()
       .setTitle("Bot Guilds")
-      .setDescription(serverlist.join("- ** **"));
+      .setDescription(serverlist.join("\n- "));
       message.inlineReply(guildsEmbed);
     }
 }
