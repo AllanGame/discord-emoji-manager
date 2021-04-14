@@ -1,18 +1,17 @@
 {
   "name": "insert-emoji-manager",
   "version": "1.0.0",
-  "description": "",
+  "description": "[Add the bot to your server](https://discord.com/oauth2/authorize?client_id=819662243971989567&scope=bot&permissions=1074056256)",
   "main": "src/index.js",
   "scripts": {
     "start": "cd src && node .",
     "devStart": "cd src && nodemon ."
   },
   "keywords": [],
-  "author": "",
+  "author": "AllanGame, iAtog",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.1",
-    "discord-webhook-node": "^1.1.8",
     "discord.js": "github:discordjs/discord.js#df324e2c21171aa17bc4e43f4a36f78c2f0eaec1",
     "express": "^4.17.1",
     "moment": "^2.29.1",
@@ -21,5 +20,13 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.6"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AllanGame/discord-emoji-manager.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AllanGame/discord-emoji-manager/issues"
+  },
+  "homepage": "https://github.com/AllanGame/discord-emoji-manager#readme"
 }

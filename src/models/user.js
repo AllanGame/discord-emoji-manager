@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema({
     lang: String,
     blacklisted: Boolean,
     dev: Boolean,
-    emojiCollection: Object
+    emojiCollection: Map
 });
 
 module.exports = mongoose.model("User", userSchema);
