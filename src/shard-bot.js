@@ -5,6 +5,7 @@ const client = new Client();
 const mongoose = require("mongoose");
 const data = require("./utils/data.json");
 let fs = require("fs");
+const GuildSchema = require('./models/guild.js') 
 global.b = function b(text) {
     return new MessageEmbed().setDescription(text).setColor('RANDOM');
 }
@@ -75,6 +76,56 @@ mongoose.connect(uri, {
     }
     console.log(`[INFO] Connected to ${data.database.url} (MongoDB)`);
 });
+
+
+client.on('message', (message) => {
+    
+    if (message.channel.type == 'dm') return;
+    if (message.author.bot) return;
+    if (message.webhookID) return;
+    if (message.content.indexOf(':') === -1) return;
+    GuildSchema.findOne({
+      guildID: message.guild.id
+    }, (err, guild) => {
+      if (err) {
+        console.error(err);
+      }
+
+      if (!guild) return;
+      if(!guild.config.useEmojiFromLibrary) return;
+      let regex = new RegExp(/[^<]{0,1}:(\w{2,32}):(?!\d{18}>)/g)
+
+                // message.channel
+                //   .createWebhook(message.author.username, {
+                //     avatar: message.author.displayAvatarURL(),
+                //     reason: message.author.tag + " is trying to use an emoji",
+                //   })
+                //   .then(async (r) => {
+                //     console.log("webhook created succesfully");
+                //     await r.send(message.content.replace(regex, (_, emoji) => " "+client.emojis.cache.find(x => x.name === emoji).toString()));
+                //     await r.delete("auto");
+                //   });
+
+
+                message.guild.fetchWebhooks().then(async (r) => {
+                    let hook = r.filter((x) => x.id === "823999978569072673").first();
+          
+                    if (hook.name !== message.author.username && hook.avatar !== message.author.avatar) {
+                      await hook.edit({
+                        name: message.author.username,
+                        avatar: message.author.displayAvatarURL()
+                      })
+                    }
+                    await hook.send(message.content.replace(regex, (_, emoji) => " "+client.emojis.cache.find(x => x.name === emoji).toString()), {
+                        disableMentions: 'all',
+                        split: true
+                    })
+                    message.delete()
+                  })
+    });
+
+})
+
 
 client.login(data.token.discord).then(() => {
     console.log(`[INFO] Logged in ${client.user.tag}.`);
