@@ -48,7 +48,7 @@ module.exports = class Command extends CommandHandler {
         let parseEmoji = Discord.Util.parseEmoji(args[0]);
         if (parseEmoji.id !== undefined || parseEmoji.id !== null) {
 
-            if (client.emojis.cache.find((emoji) => emoji.id === parseEmoji.id) === undefined) {
+            if (this.client.emojis.cache.find((emoji) => emoji.id === parseEmoji.id) === undefined) {
                 return message.channel.send(b("<:error:819654964628160527> That emoji isnt from this guild!"));
             }
 
