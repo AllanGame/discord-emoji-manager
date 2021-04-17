@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const data = require("./utils/data.json");
 let fs = require("fs");
 const GuildSchema = require('./models/guild.js')
+const UserSchema = require('./models/user.js')
 global.b = function b(text) {
   return new MessageEmbed().setDescription(text).setColor('RANDOM');
 }
