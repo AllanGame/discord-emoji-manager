@@ -15,36 +15,30 @@ module.exports = class Command extends CommandHandler {
   }
 
   run(message, args) {
-
     function noEmojisProvided() {
-      message.inlineReply(b("Please provide some emojis"))
+      message.inlineReply(b("Please provide some emojis"));
     }
 
-    const ALLOWED_OPTIONS = [
-      "add",
-      "remove",
-      "has",
-    ]
+    const ALLOWED_OPTIONS = ["add", "remove", "has"];
 
     let regex = new RegExp(/[^<]{0,1}:(\w{2,32}):(?!\d{18}>)/g);
+    let emojis;
     if (args[0]) {
-      let emojis = args.slice(1);
-      if (emojis.length < 1 && ALLOWED_OPTIONS.includes(args[0])) return noEmojisProvided()
+      emojis = args.slice(1);
+      if (emojis.length < 1 && ALLOWED_OPTIONS.includes(args[0]))
+        return noEmojisProvided();
     }
-    const user = this.storage.user
 
-
+    const user = this.storage.user;
 
     switch (args[0]) {
       case "add":
         // add emojis to the collection
 
-
         emojis
           .join("")
           .match(regex)
           .forEach(async (m) => {
-
             let emoji = this.client.emojis.cache.find(
               (e) => e.name === m.replace(/:/gm, "")
             );
@@ -63,8 +57,6 @@ module.exports = class Command extends CommandHandler {
           return;
         }
 
-
-
         emojis
           .join("")
           .match(regex)
@@ -82,10 +74,19 @@ module.exports = class Command extends CommandHandler {
         // check if the collection has an especific emoji
         let requestedEmoji = args[1].replace(/:/gm, "");
         if (user.emojiCollection.has(requestedEmoji)) {
-          message.inlineReply(b(`\`${requestedEmoji}\` is in your col
-          lection! ${user.emojiCollection.get(requestedEmoji)}`))
+          message.inlineReply(
+            b(
+              `\`${requestedEmoji}\` is in your collection! ${user.emojiCollection.get(
+                requestedEmoji
+              )}`
+            )
+          );
         } else {
-          message.inlineReply(b(`\`${requestedEmoji}\` isnt at your collection, but you can search it in our library with the command \`${this.storage.prefix}library search ${requestedEmoji}\``))
+          message.inlineReply(
+            b(
+              `\`${requestedEmoji}\` is not in your collection, but you can search it in our library with the command \`${this.storage.prefix}library search ${requestedEmoji}\``
+            )
+          );
         }
 
         break;
