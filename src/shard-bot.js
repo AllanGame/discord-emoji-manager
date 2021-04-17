@@ -9,7 +9,7 @@ const GuildSchema = require('./models/guild.js')
 global.b = function b(text) {
   return new MessageEmbed().setDescription(text).setColor('RANDOM');
 }
-
+const {getEmojis, stringHasEmoji} = require('./utils/emojisUtils')
 global.fe = function fe(title, description, color, timestamp, author, footer, image, thumbnail) {
   const embed = new MessageEmbed();
   if (title) { embed.setTitle(title); }
@@ -80,10 +80,12 @@ mongoose.connect(uri, {
 
 client.on('message', (message) => {
 
+    let regex = new RegExp(/[^<]{0,1}:(\w{2,32}):(?!\d{18}>)/g)
+
   if (message.channel.type == 'dm') return;
   if (message.author.bot) return;
   if (message.webhookID) return;
-  if (message.content.indexOf(':') === -1) return;
+  if(!stringHasEmoji(message)) return;
   GuildSchema.findOne({
     guildID: message.guild.id
   }, (err, guild) => {
@@ -93,7 +95,6 @@ client.on('message', (message) => {
 
     if (!guild) return;
     if (!guild.config.useEmojiFromLibrary) return;
-    let regex = new RegExp(/[^<]{0,1}:(\w{2,32}):(?!\d{18}>)/g)
 
     let messageHasAttachments = false;
     let attachments = [];
