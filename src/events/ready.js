@@ -1,7 +1,7 @@
 const Client = require('../lib/Client');
 const moment = require('moment'); 
 const Discord = require('discord.js')
-const dev = require('../utils/misc.json').config.dev
+const dev = require('../utils/data.json').util.currentDev
 /**
  * @param {Client} client 
  */
