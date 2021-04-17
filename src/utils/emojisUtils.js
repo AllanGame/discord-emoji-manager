@@ -9,6 +9,7 @@ function getEmojis(str) {
   let emojis = new Map();
 
   for (let x of str.matchAll(regex)) {
+    console.log(x)
     emojis.set(i, x)
     i++
   }
