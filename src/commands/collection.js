@@ -43,6 +43,7 @@ module.exports = class Command extends CommandHandler {
               (e) => e.name === m.replace(/:/gm, "")
             );
             user.emojiCollection.set(emoji.name, emoji);
+            message.channel.send(`Added the emoji \`${emoji.name}\` ${emoji}`)
           });
         user.save();
 
@@ -53,6 +54,7 @@ module.exports = class Command extends CommandHandler {
 
         if (args[1] === "all") {
           user.emojiCollection.clear();
+          
           user.save();
           return;
         }
@@ -65,6 +67,7 @@ module.exports = class Command extends CommandHandler {
               (e) => e.name === m.replace(/:/gm, "")
             );
             user.emojiCollection.delete(emoji.name);
+            message.channel.send(`Removed the emoji \`${emoji.name}\` ${emoji.toString()}`)
           });
         user.save();
 
