@@ -16,7 +16,7 @@ module.exports = class Command extends CommandHandler {
     }
 
     run(message, args) {
-        if(message.guild.id !== this.storage.misc.config.devGuild) {
+        if(this.storage.guild.config.evalCommandAllowed !== true) {
             return message.inlineReply("Sorry master, for security reasons i do not allow you to use that command here.");
         }
 
