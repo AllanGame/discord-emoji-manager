@@ -21,11 +21,7 @@ module.exports = class Command extends CommandHandler {
         switch (args[1]) {
           case "guild.config.useEmojiFromLibrary":
             if (args[2] === "true") {
-              let newConfig = {
-                useEmojiFromLibrary: true
-              };
-
-              this.storage.guild.config = newConfig;
+              this.storage.guild.config.useEmojiFromLibrary = true
               this.storage.guild.save().then(() => {
                 message.inlineReply(b("Config has been updated \n `guild.config.useEmojiFromLibrary`: true"))
               }).catch((err) => {
@@ -36,10 +32,8 @@ module.exports = class Command extends CommandHandler {
             break;
           case "guild.config.evalCommandAllowed":
             if (args[2] === "true") {
-              let newConfig = {
-                evalCommandAllowed: true,
-              }
-              this.storage.guild.config = newConfig;
+
+              this.storage.guild.config.evalCommandAllowed = true;
               this.storage.guild.save().then(() => {
                 message.inlineReply(b("Config has been updated \n `guild.config.evalCommandAllowed`: true"))
               }).catch((err) => {

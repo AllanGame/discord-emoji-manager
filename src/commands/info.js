@@ -15,6 +15,7 @@ module.exports = class Command extends CommandHandler {
     }
 
     run(message, args) {
+        let client = this.client;
         const has = /<a?:.+:\d+>/gm;
         if (!args[0]) {
              return message.inlineReply(b("<:error:819654964628160527> Put the emoji or emoji id to get the data"));

@@ -121,7 +121,8 @@ mongoose.connect(
  */
 client.on("message", (message) => {
   
-    
+  
+    if(message.content.startsWith("!")) return;
     if (message.channel.type == "dm") return; 
     if (message.author.bot) return;
     if (message.webhookID) return; // ignore webhook messages
@@ -133,7 +134,11 @@ client.on("message", (message) => {
           throw err;
       }
       let regex = new RegExp(/[^<]{0,1}:(\w{2,32}):(?!\d{18}>)/g);
-      if (user.emojiCollection === undefined || user.emojiCollection.size === 0) return; // check if the user has an emoji collection
+      if(user === null) retu
+      if (user.emojiCollection === undefined || user.emojiCollection.size === 0) {
+        user.emojiCollection = new Map()
+        return;
+      }
       if (!stringHasEmoji(message.content)) return;
       
       for(let x of message.content.matchAll(regex)) {

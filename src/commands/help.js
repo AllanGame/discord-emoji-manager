@@ -28,8 +28,8 @@ const client = this.client;
   
         message.inlineReply(helpEmbed).then(async (msg) => {
           await msg.react("❓");
-          await msg.react("<:command:821216655522398239>");
-          await msg.react("<:emoji:818987710693900329>");
+          await msg.react("821216655522398239");
+          await msg.react("818987710693900329");
   
           // Catch reactions
           let faqsFilter = (reaction, user) => reaction.emoji.name === "❓" && user.id === message.author.id;
